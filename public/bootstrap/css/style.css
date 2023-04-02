@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+*{
+    font-family: 'Poppins', sans-serif;
+}
+header{
+    z-index: 1;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+/* scroll bars */
+::-webkit-scrollbar{
+    background-color:var(--black);
+}
+::-webkit-scrollbar-thumb{
+    background: var(--colorYellow);
+    border-radius: 10px;
+}
+/* scroll bars */
+
+:root{
+    --colorYellow:#FBD232;
+    --black:#1D2736;
+}
+.btn-yellow{
+    background-color: var(--colorYellow);
+}
+
+.text-yellow{
+    color: var(--colorYellow);
+}
+
+.home{
+    background-image: url("../../images/bg1.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+}
+.bg-blue{
+    background-color: var(--black);
+}
+
+.imag-search{
+    margin-top: -20px;
+}
+.poligon{
+    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    transition: .4s ease-in-out;
+}
+
+.poligon .fas{
+    font-size: 50px;
+}
+
+.poligon:hover{
+    transform: rotate(180deg);
+    transition: .4s ease-in-out;
+}
+
+.poligon hr{
+    border: 1px solid black;
+}
+
+.h1{
+    font-size: 50px;
+}
+
+
+/* ---up top btn */
+.up-top{
+    position:fixed;
+    bottom: 22px;
+    right: 17px;
+    background-color:var(--colorYellow);
+    padding: 10px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: -100px;
+}
+.show-up-top{
+    margin-bottom:0 !important;
+    transition: .8s ease-in-out;
+}
+.up-top i{
+    font-size: 28px;
+    color: var(--black) !important;
+    transition:.4s ease-in-out;
+}
+.up-top:hover i{
+    transform: scale(1.3);
+    transition:.4s ease-in-out;
+}
+/* ---up top btn */
+
+/* ----------------------cards img----------------------- */
+
+.img-hover:hover .hover-section-img{
+    cursor: pointer;
+    bottom: 0;
+    transition:.4s ease-in-out;
+}
+.hover-section-img{
+    background-color: rgba(0, 0, 0, 0.412);
+    bottom: -151px;
+    transition:.4s ease-in-out;
+}
+.img-hover img{
+    transition:.5s ease-in-out;
+}
+.img-hover:hover img{
+    transform: scale(1.2);
+    transition:.4s ease-in-out;
+}
+
+
+/* ------navigate cards profil------ */
+.navigate-card-profile .first-navigate{
+    clip-path: polygon(85% 0%, 100% 50%, 85% 100%, 0% 100%, 0% 50%, 0% 0%);
+}
+.navigate-card-profile li{
+    clip-path: polygon(85% 0%, 100% 50%, 85% 100%, 0% 100%, 15% 50%, 0% 0%);
+    background-color: var(--colorYellow);
+    width: 150px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 15px;
+    margin-left: -18px;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+}
+
+.navigate-card-profile li:hover{
+    background-color: var(--black);
+    color: white;
+    transition: .2s ease-in-out;
+}
+
+/*-------------cards profile------------------ */
+
+.card-profile{
+    overflow: hidden !important;
+    border-radius: 10px !important;
+    cursor: pointer;
+}
+.metier-card{
+    top: 25px;
+    left: 25px;
+}
+
+.img-card-profile{
+    background-color: var(--black);
+    width: 40%;
+    transform: translate(60%, 50px);
+}
+
+.mt-6{
+    margin-top: 200px;
+}
+
+
+
+
+/*-------------cards profile------------------ */
+
+
+
+/* ----------footer-------------- */
+
+footer .social-media .first-navigate{
+    clip-path: polygon(85% 0%, 100% 50%, 85% 100%, 0% 100%, 0% 50%, 0% 0%);
+}
+
+.social-media li{
+    clip-path: polygon(85% 0%, 100% 50%, 85% 100%, 0% 100%, 15% 50%, 0% 0%);
+    background-color: var(--colorYellow);
+    width: 100px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 15px;
+    margin-left: -12px;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+
+}
+.social-media li:hover{
+    background-color: white;
+    transition: .2s ease-in-out;
+}
+
+footer .social-media{
+    position: absolute !important;
+    bottom: 38px !important;
+    left: -40px;
+}
+.bg-footer{
+    background-image: url(../../images/bg-footer.png);
+    background-size: cover;
+    background-attachment: fixed;
+}
+.copiryt{
+    height: 80px;
+}
+
+
+
+/* -------------register------------------------ */
+
+.bg-register-image{
+    background-image: url(../../images/electrice.jpg) !important;
+    height: 100% !important;
+}
+
+
+.card-profile{
+    width: 100% !important;
+}
+
+@media screen and (min-width: 600px) {
+    .card-profile{
+        width: 350px !important;
+    }
+}

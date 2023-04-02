@@ -1,0 +1,69 @@
+<?php include_once APPROOT . '/views/inc/head.php'; ?>
+
+<body class="bg-blue">
+    <?php include_once APPROOT . '/views/inc/navbar.php'; ?>
+
+
+    <div class="container">
+        <div class="card shadow-lg o-hidden border-0 my-5">
+            <div class="card-body p-0">
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-flex">
+                        <div class="flex-grow-1 bg-register-image" ></div>
+                    </div>
+
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h4 class="text-dark mb-4">Create an Account!</h4>
+                            </div>
+                            <form class="user form-register" method="POST" action="<?php echo URLROOT ?>/TechController/register" enctype="multipart/form-data">
+                                <div class="row mb-3">
+                                    <input type="file" name="img" id="input" class="d-none">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input class="form-control form-control-user nom" type="text" id="exampleFirstName" placeholder="First Name" name="nom">
+                                        <div class="alert alert-danger form-control-user py-1 text-center d-none valid">nom not valid</div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input class="form-control form-control-user prenom" type="text" id="exampleFirstName" placeholder="Last Name" name="prenom">
+                                        <div class="alert alert-danger form-control-user py-1 text-center d-none valid">prenom not valid</div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user email" type="email" id="exampleFirstName" placeholder="email adresse" name="email">
+                                        <div class="alert alert-danger form-control-user py-1 text-center d-none valid">email not valid</div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select class="form-select form-select-md form-control form-control-user job" aria-label=".form-select-sm example" name="job">
+                                            <!-- <option selected>select job</option> -->
+
+                                            <?php foreach ($data[1] as $job) : ?>
+                                                <option value="<?php echo $job->nom; ?>"><?php echo $job->nom; ?></option>
+                                            <?php endforeach;  ?>
+
+                                        </select>
+                                        <div class="alert alert-danger form-control-user py-1 text-center d-none valid">job not valid</div>
+
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input class="form-control form-control-user pass" type="password" id="examplePasswordInput" placeholder="Password" name="password">
+                                        <div class="alert alert-danger form-control-user py-1 text-center d-none valid">password not valid</div>
+                                    </div>
+                                    <div class="col-sm-6"><input class="form-control form-control-user cpass" type="password" id="exampleRepeatPasswordInput" placeholder="Repeat Password" name="Cpassword">
+                                        <div class="alert alert-danger form-control-user py-1 text-center d-none valid">confirmPassword not valid</div>
+                                    </div>
+                                </div><button type="submit" name="submit" class="btn btn-yellow d-block btn-user w-100 submit">Register Account</button>
+                                <hr>
+
+
+                            </form>
+                            <div class="text-center"><a class="small" href="<?php echo URLROOT ?>/pages/login">Already have an account? Login!</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php include_once APPROOT . '/views/inc/linkJS.php'; ?>
