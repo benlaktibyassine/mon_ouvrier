@@ -54,7 +54,7 @@ $(function(){
     })
 
     $('.job').blur(function (){
-        if($(this).val().length <= 3){
+        if($(this).val() <= 0){
             $(this).css('border','1px solid red').parent().find('.valid').removeClass("d-none");
             jobError = true;
         }

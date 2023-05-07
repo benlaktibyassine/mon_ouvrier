@@ -38,7 +38,7 @@
                                             <!-- <option selected>select job</option> -->
 
                                             <?php foreach ($data[1] as $job) : ?>
-                                                <option value="<?php echo $job->nom; ?>"><?php echo $job->nom; ?></option>
+                                                <option value="<?php echo $job->id_cat; ?>"><?php echo $job->nom; ?></option>
                                             <?php endforeach;  ?>
 
                                         </select>

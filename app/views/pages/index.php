@@ -14,8 +14,8 @@
         <div class="info animate__animated animate__bounceInRight animate__slow animate__delay-1s d-flex gap-3 flex-column justify-content-center align-items-center">
           <h1 class="h1 text-white"><span class="text-yellow ">Professional</span> Services</h1>
           <p class="px-5 text-center text-white">
-        A WEBSITE THAT YOU CAN FIND A NEW OPPORTUNITY  🙂
-        </p>
+            A WEBSITE THAT YOU CAN FIND A NEW OPPORTUNITY 🙂
+          </p>
           <div class="buttonHome">
             <a href="#search" class="btn btn-yellow btn-lg px-3 text-dark">Search</a>
             <a href="<?php echo URLROOT ?>/pages/register" class="btn btn-yellow btn-lg text-dark">add services</a>
@@ -82,22 +82,27 @@
           <form class="my-5 d-flex flex-column w-100" method="GET" action="<?php echo URLROOT ?>/TechController/searchTech">
             <div class="input-group mb-3 w-100">
               <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
-              <select class="form-select form-select-md" aria-label=".form-select-sm example" name="city">
-                <option selected>search City ....</option>
-
+              <select class="form-select form-select-md" aria-label=".form-select-sm example" name="city" id="nom_ville">
+                <option selected>Chercher ville ....</option>
                 <?php foreach ($data[2] as $city) : ?>
-                  <option value="<?php echo $city->ville; ?>"><?php echo $city->ville; ?></option>
+                  <option value="<?php echo $city->id_ville; ?>"><?php echo $city->nom_ville; ?></option>
                 <?php endforeach;  ?>
 
+              </select>
+            </div>
+            <div class="input-group mb-3 w-100">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+              <select class="form-select form-select-md" aria-label=".form-select-sm example" name="secteur" id="secteurs">
+                <option selected>Chercher secteurs ....</option>
               </select>
             </div>
 
             <div class="input-group mb-3 text-dark">
               <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-marker-alt"></i></span>
               <select class="form-select form-select-md" aria-label=".form-select-sm example" name="job">
-                <option selected name="job">search Job ....</option>
+                <option selected name="job">Chercher specialitée ....</option>
                 <?php foreach ($data[1] as $job) : ?>
-                  <option value="<?php echo $job->id_cat; ?>"><?php echo $job->nom; ?></option>
+                  <option value="<?php echo $job->id_cat ?>"><?php echo $job->nom; ?></option>
                 <?php endforeach;  ?>
               </select>
 
@@ -110,7 +115,7 @@
 
     <div class="metier container my-5" id="services">
       <div>
-        <h5>Sarch by job</h5>
+        <h5 id="searchy">Recherch par emploi</h5>
       </div>
 
       <div class="row">
@@ -123,11 +128,6 @@
               <h4><?php echo $job->nom ?></h4>
               <p><?php echo $job->description ?> </p>
               <button class="btn btn-yellow text-dark">Consulter</button>
-              <!-- Button trigger modal -->
-
-
-
-
 
             </div>
           </div>
@@ -143,6 +143,7 @@
 
       <div class="cards-profile text-dark  d-flex flex-column flex-lg-row gap-4 justify-content-center align-items-center">
         <?php
+        // die(var_dump($data[4]));
         foreach ($data[4] as $tech) :
         ?>
 
@@ -282,7 +283,7 @@
       animateClass: 'animated',
       offset: 100,
       callback: function(box) {
-        console.log("WOW: animating <" + box.tagName.toLowerCase() + ">")
+        // console.log("WOW: animating <" + box.tagName.toLowerCase() + ">")
       }
     });
     wow.init();
@@ -291,4 +292,29 @@
       section.className = 'section--purple wow fadeInDown';
       this.parentNode.insertBefore(section, this);
     };
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var villeSelect = document.getElementById('nom_ville');
+      var secteursSelect = document.getElementById('secteurs');
+      villeSelect.addEventListener('change', function() {
+        var ville = this.value;
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '<?php echo URLROOT ?>/catController/chercherSec', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+          if (this.readyState === 4 && this.status === 200) {
+            var options = '';
+            // console.log(this.responseText)
+            var secteurs = JSON.parse(this.responseText);
+            for (var i = 0; i < secteurs.length; i++) {
+              options += '<option value="' + secteurs[i].secteur + '">' + secteurs[i].secteur + '</option>';
+            }
+            secteursSelect.innerHTML = options;
+          }
+        };
+        xhr.send('ville=' + ville);
+      });
+    });
   </script>

@@ -1,4 +1,22 @@
 <?php
+// require './vendor/autoload.php';
+
+// use PayPal\Rest\ApiContext;
+// use PayPal\Auth\OAuthTokenCredential;
+
+// $clientId = 'AULxBiEldH594Du0ilr1nn37UqUS43DN3PVMgrgXvoIVc7Cxn6IMDLDmNz-WyIn-ieQmtDh3YMlqPzT-';
+// $clientSecret = 'EBOQNfh7HIMe0_n2yogowmSbjlZfKc7kNmHHNaO30d6d9Krm2G53udBYQQzjW7UVGyKSNaNxwS-tkJWo';
+
+// $apiContext = new ApiContext(new OAuthTokenCredential($clientId, $clientSecret));
+
+// $apiContext->setConfig([
+//     'mode' => 'sandbox',
+//     'log.LogEnabled' => true,
+//     'log.FileName' => 'PayPal.log',
+//     'log.LogLevel' => 'DEBUG',
+// ]);
+
+
 class TechController extends Controller
 {
     private $img;
@@ -38,6 +56,7 @@ class TechController extends Controller
                 'password_err' => '',
                 'Cpassword_err' => '',
             ];
+            $cate = $dataTech['job'];
             //validation email
             if (empty($data['email'])) {
                 $data['email_err'] = 'Please enter email';
@@ -70,9 +89,9 @@ class TechController extends Controller
             if (empty($data['nom_err']) && empty($data['prenom_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['Cpassword_err'])) {
                 $page = 'register';
                 $imgSrc = $this->checkImg($page);
-                $idCat = $this->CatModel->getIdCatSelect($dataTech['job']);
+                // $idCat = $this->CatModel->getIdCatSelect($dataTech['job']);
                 $data["password"] = password_hash($data["password"], PASSWORD_DEFAULT);
-                $this->TechModel->Register($data, $idCat, $imgSrc);
+                $this->TechModel->Register($data, $cate, $imgSrc);
 
                 $data = $this->TechModel->getTech($data['nom']);
 
@@ -114,18 +133,22 @@ class TechController extends Controller
             $data[0]['title'] = "Login";
             $data[0]['error'] = "email or password not match";
 
-
-            if (password_verify($password, $dataTech->password)) {
-                $_SESSION['username'] = $dataTech->nom . " " . $dataTech->prenom;
-                $_SESSION['id'] = $dataTech->Id_tech;
-                $_SESSION['role'] = "user";
-                redirect('pages/dashboardUser');
-            } else {
-
+            // die(var_dump($_POST));
+            if (!$dataTech || !password_verify($password, $dataTech->password)) {
+                $data = [
+                    'title' => 'Login',
+                    'error' => 'Email or password incorrect'
+                ];
                 $this->view('pages/login', $data);
+            } else {
+                $_SESSION['username'] = $dataTech->nom . ' ' . $dataTech->prenom;
+                $_SESSION['id'] = $dataTech->Id_tech;
+                $_SESSION['role'] = 'user';
+                redirect('pages/dashboardUser');
             }
         }
     }
+
 
     public function Logout()
     {
@@ -143,12 +166,15 @@ class TechController extends Controller
         } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($_POST['password'] == '') {
                 $_POST['password'] = $this->TechModel->getTech($id)->password;
+            } else {
+                $_POST["password"] = password_hash($_POST["password"], PASSWORD_DEFAULT);
             }
+
             $data = $_POST;
             $page = 'update';
-            $idCat = $this->CatModel->getIdCatSelect($_POST['job']);
+
             $imgName = $this->checkImg($page, $id);
-            $this->TechModel->update($data, $id, $imgName, $idCat);
+            $this->TechModel->update($data, $id, $imgName);
             redirect('pages/dashboardUser');
         }
     }
@@ -165,21 +191,26 @@ class TechController extends Controller
 
 
         if (isset($_GET['search'])) {
-
-
-
             $city = $_GET['city'];
-            $id_cat = $_GET['job'];
-            $nbr = $this->TechModel->searchNbr($city, $id_cat)[0]->nbr;
+            $secteur = $_GET['secteur'];
+            $job = $_GET['job'];
+            // $nbr = $this->TechModel->searchNbr($city, $job)[0]->nbr;
+            
+            // $dataPageno = $this->paginaion($nbr);
+            
+            // $offset = $dataPageno['offset'];
+            $techSearch = $this->TechModel->search($city, $job, $secteur);
+            // die(var_dump( $techSearch));
 
-            $dataPageno = $this->paginaion($nbr);
 
-            $offset = $dataPageno['offset'];
-            $techSearch = $this->TechModel->search($city, $id_cat, $offset);
-
+            $categories = $this->CatModel->getCategories();
+            $AllCity = $this->TechModel->getAllCity();
             $data = [
                 ['title' => "Result page"],
+                $categories,
+                $AllCity,
                 $techSearch
+
             ];
             $this->view('pages/techSearch', $data);
         }
@@ -284,19 +315,15 @@ class TechController extends Controller
             $imageExtension = explode('.', $fileName);
             $imageExtension = strtolower(end($imageExtension));
             if (!in_array($imageExtension, $validImageExtension)) {
-                echo
-                "
-                  <script>
-                    alert('Invalid Image Extension');
-                  </script>
-                  ";
+                $error_msg = "Le type de l'image est insuportable !? (essayez: 'jpg', 'jpeg', 'png', 'jfif')";
+                redirect('pages/profile?error=' . urlencode($error_msg));
+
             } else if ($fileSize > 1000000000) {
-                echo
-                "
-                  <script>
-                    alert('Image Size Is Too Large');
-                  </script>
-                  ";
+                $error_msg = "La taille de l'image est trop large !?";
+
+                // Redirect with the error message
+                redirect('pages/profile?error=' . urlencode($error_msg));
+                
             } else {
                 $newImageName = uniqid();
                 $newImageName .= '.' . $imageExtension;
@@ -305,9 +332,10 @@ class TechController extends Controller
 
                 $description = $_POST['description'];
                 // die($newImageName);
-
+                $error_msg = "Ajouter avec succes";
                 $this->TechModel->insertWork($id, $newImageName, $description);
-                redirect('pages/profile');
+                redirect('pages/profile?succes=' . urlencode($error_msg));
+
             }
         }
     }
@@ -319,10 +347,10 @@ class TechController extends Controller
     }
     public function deleteReview()
     {
-        $id=$_GET['rev'];
-        $tech=$_GET['id_tech'];
+        $id = $_GET['rev'];
+        $tech = $_GET['id_tech'];
         $this->TechModel->deleteReview($id);
-        redirect('PagesController/pageProfile/'.$tech);
+        redirect('PagesController/pageProfile/' . $tech);
     }
     public function addReview($id)
     {
@@ -344,9 +372,13 @@ class TechController extends Controller
                     }
                 }
             }
-        }else{
+        } else {
             redirect('pages/login');
         }
     }
-
+    public function searching()
+    {
+        $serachinput = $_GET['q'];
+        return $this->TechModel->searching($serachinput);
+    }
 }

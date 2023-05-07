@@ -109,16 +109,21 @@ class PagesController extends Controller
     }
   }
 
-  // dashboard admin pages
+  // dashboard admin page
 
   public function dashboardUser()
   {
     if ($_SESSION['role'] == "user") {
       $dataTech = $this->technicienModel->getTech($_SESSION['id']);
+      $ville = $this->technicienModel->getVille($_SESSION['id']);
+      $metier = $this->technicienModel->getMetier($_SESSION['id']);
       $categories = $this->categorieModel->getCategories();
+      
+      $AllCity = $this->technicienModel->getAllCity();
+
       $data = [
         ["title" => "dashboardUser"],
-        $dataTech, $categories
+        $dataTech, $categories,$AllCity,$ville,$metier
       ];
       $this->view('pages/dashboardUser', $data);
     } else {
@@ -133,7 +138,16 @@ class PagesController extends Controller
     ];
     $this->view('pages/loginAdmin', $data);
   }
-
+  public function techSearch()
+  {
+    $categories = $this->categorieModel->getCategories();
+    $AllCity = $this->technicienModel->getAllCity();
+    $data = [
+      ["title" => "Search"],
+      $categories,$AllCity
+    ];
+    $this->view('pages/techSearch', $data);
+  }
   public function profile()
   {
 
@@ -154,7 +168,7 @@ class PagesController extends Controller
     $tech = $this->technicienModel->getTech($id);
     $dataWorks = $this->technicienModel->getWorks($id);
     $reviews = $this->technicienModel->getReviewsforuser($id);
-    
+
 
     $data = [
       ["title" => "ProfilePage"],
@@ -166,5 +180,32 @@ class PagesController extends Controller
 
     $this->view('pages/pageProfile', $data);
   }
-  
+  public function payement()
+  {
+    $data = [
+      ["title" => "payement"]
+    ];
+    $this->view('pages/payement', $data);
+  }
+  public function villes()
+  {
+    $AllCity = $this->adminModel->villes();
+    $data=[
+      ["title" => "Villes"],
+      $AllCity
+    ];
+    $this->view('pages/villes',$data);
+
+  }
+  public function secteurs()
+  {
+    $secteurs =$this->adminModel->secteurs();
+    $AllCity = $this->adminModel->villes();
+    $data=[
+      ["title" =>"Secteurs"],
+      $secteurs,
+      $AllCity
+    ];
+    $this->view('pages/secteurs',$data);
+  }
 }

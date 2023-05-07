@@ -12,41 +12,41 @@
           </li>
           <li class="nav-item">
             <a class="nav-link text-dark" href="#services">Services</a>
-          </li>
-          <?php if (isset($_SESSION['role'])&& $_SESSION['role'] == 'admin') {
+          </li></ul>
+          <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
 
           ?>
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="<?php echo URLROOT ?>/pages/dashboardAdmin">My Profile</a>
-            </li>
+            <div class="d-flex">
+              <a class="btn btn-primary" href="<?php echo URLROOT ?>/pages/dashboardAdmin">My Profile</a>
+            </div>
           <?php
           } ?>
-          <?php if (isset($_SESSION['role'])&& $_SESSION['role'] == 'user') {
+          <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
 
           ?>
-            <li class="nav-item">
-              <a class="nav-link text-dark" href="<?php echo URLROOT ?>/pages/dashboardUser">My Profile</a>
-            </li>
-          <?php
-          } ?>
-          <?php if (!$_SESSION) {
+            <div class="d-flex">
+              <a class="btn btn-primary" href="<?php echo URLROOT ?>/pages/dashboardUser">My Profile</a>
+            </div>
+       
+      <?php
+          } ?> 
+      <?php if (!$_SESSION) {
 
-          ?>
-            <li class="nav-item">
-            <a class="nav-link text-dark" href="<?php echo URLROOT ?>/pages/login">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark" href="<?php echo URLROOT ?>/pages/register">Register</a>
-          </li>
-          <?php
-          } ?>
+      ?>
+        <!-- <li class="nav-item"> -->
+          <div class="d-flex">
+        <a class="btn text-dark " style="background-color: #fbd23287;" href="<?php echo URLROOT ?>/pages/login">Se Connecter</a></div>
+        <!-- </li> -->
+        <!-- <li class="nav-item">
+            <a class="btn btn-success text-dark" href="<?php echo URLROOT ?>/pages/register">Register</a>
+          </li> -->
 
-          
-        </ul>
-        <div class="d-flex" action="">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          
-        </div>
+      <?php
+      } ?>
+
+
+
+
       </div>
     </div>
   </nav>

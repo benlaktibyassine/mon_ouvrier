@@ -43,7 +43,6 @@ class Admin
         $this->db->bind(':phone', $dataAdmin['phone']);
         $this->db->bind(':password', $dataAdmin['password']);
         $this->db->execute();
-        
     }
 
 
@@ -75,11 +74,42 @@ class Admin
         $this->db->query('DELETE FROM `categories` WHERE id_cat = ' . $id);
         $this->db->execute();
     }
-    // public function search($search_name){
-    //     $search_name = "%".$search_name."%";
-    //     $this->db->query("SELECT * FROM Admins WHERE username LIKE :name OR full_name LIKE :name");
-    //     $this->db->bind(':name' ,$search_name);
-    //     return $this->db->resultSet();
-    // }
-
+    //  yassine fhad tables jdad back-end o anoir front
+    public function villes()
+    {
+        $this->db->query("SELECT * FROM villes");
+        return $this->db->resultSet();
+    }
+    public function AddCity($ville)
+    {
+        $this->db->query('INSERT INTO `villes`(`nom_ville`) VALUES (:ville)');
+        $this->db->bind(':ville', $ville);
+        $this->db->execute();
+    }
+    public function DeleteCity($idville)
+    {
+        $this->db->query('DELETE FROM `villes` WHERE id_ville = ' . $idville);
+        $this->db->execute();
+    }
+    ////////////////////////////////////////////////////
+    public function secteurs()
+    {
+        $this->db->query("SELECT secteurs.secteur, villes.nom_ville ,secteurs.id_secteur
+       FROM secteurs 
+       INNER JOIN villes ON secteurs.id_ville = villes.id_ville;
+       ");
+        return $this->db->resultSet();
+    }
+    public function AddSecteur($secteur, $id_ville)
+    {
+        $this->db->query('INSERT INTO `secteurs`(`secteur`, `id_ville`) VALUES (:sec,:id)');
+        $this->db->bind(':sec', $secteur);
+        $this->db->bind(':id', $id_ville);
+        $this->db->execute();
+    }
+    public function DeleteSecteur($idSecteur)
+    {
+        $this->db->query('DELETE FROM `secteurs` WHERE id_secteur = ' . $idSecteur);
+        $this->db->execute();
+    }
 }

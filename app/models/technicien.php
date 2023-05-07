@@ -12,7 +12,13 @@ class Technicien
 
     public function GetLastTech()
     {
-        $this->db->query("SELECT * FROM techniciens ORDER BY Id_tech DESC LIMIT 3");
+        $this->db->query("SELECT t.Id_tech, t.nom, t.prenom, t.email, t.phone, c.nom metier, t.adresse, v.nom_ville ville, t.secteur, t.img, t.password, t.feedback
+        FROM techniciens t
+        JOIN categories c ON t.Fk_cat = c.id_cat
+        JOIN villes v ON t.id_ville = v.id_ville
+        ORDER BY t.Id_tech DESC 
+        LIMIT 3;
+        ");
         return $this->db->resultSet();
     }
 
@@ -35,45 +41,65 @@ class Technicien
 
     public function getAllCity()
     {
-        $this->db->query("SELECT DISTINCT ville FROM techniciens;");
+        $this->db->query("SELECT * FROM villes;");
         return $this->db->resultSet();
     }
 
     public function getAllTech()
     {
-        $this->db->query("SELECT * FROM techniciens;");
+        $this->db->query("SELECT t.Id_tech, t.nom, t.prenom, t.email, t.phone, c.nom metier, t.adresse, v.nom_ville ville, t.secteur, t.img, t.password, t.feedback
+        FROM techniciens t
+        JOIN categories c ON t.Fk_cat = c.id_cat
+        JOIN villes v ON t.id_ville = v.id_ville");
         return $this->db->resultSet();
     }
 
     public function countTech()
     {
-        $this->db->query("SELECT * FROM techniciens;");
+        $this->db->query("SELECT t.Id_tech, t.nom, t.prenom, t.email, t.phone, c.nom metier, t.adresse, v.nom_ville ville, t.secteur, t.img, t.password, t.feedback
+        FROM techniciens t
+        JOIN categories c ON t.Fk_cat = c.id_cat
+        JOIN villes v ON t.id_ville = v.id_ville");
         $this->db->execute();
         return $this->db->rowCount();
     }
 
     public function getTechTopFeedback()
     {
-        $this->db->query("SELECT * FROM techniciens ORDER BY feedback DESC LIMIT 3");
+        $this->db->query("SELECT t.Id_tech, t.nom, t.prenom, t.email, t.phone, c.nom metier, t.adresse, v.nom_ville ville, t.secteur, t.img, t.password, t.feedback
+        FROM techniciens t
+        JOIN categories c ON t.Fk_cat = c.id_cat
+        JOIN villes v ON t.id_ville = v.id_ville
+        ORDER BY t.Id_tech DESC 
+        LIMIT 3;
+        ");
         return $this->db->resultSet();
     }
-    public function verfiyEmail($email){
-        $this->db->query('SELECT * FROM `techniciens` WHERE email = :em');
+    public function verfiyEmail($email)
+    {
+        $this->db->query('SELECT t.Id_tech, t.nom, t.prenom, t.email, t.phone, c.nom metier, t.adresse, v.nom_ville ville, t.secteur, t.img, t.password, t.feedback
+        FROM techniciens t
+        JOIN categories c ON t.Fk_cat = c.id_cat
+        JOIN villes v ON t.id_ville = v.id_ville WHERE email = :em');
         $this->db->bind(':em', $email);
-        
+
         return $this->db->resultSet();
     }
     public function Register($data, $fk_cat, $imgName)
     {
-        $this->db->query('SELECT * FROM `techniciens` WHERE email = :em');
+        $this->db->query('SELECT count(*) FROM techniciens WHERE email = :em');
         $this->db->bind(':em', $data['email']);
-        if ($this->db->single() == 0) {
-            
-            $this->db->query('INSERT INTO `techniciens`(`nom`, `prenom`, `email`,`metier`,`password`,`Fk_cat`,`img`) VALUES (:nom,:prenom,:email,:job,:password,:fk_cat,:img)');
+
+        $this->db->execute();
+        $res = $this->db->rowCount();
+
+        if ($res == 1) {
+
+            $this->db->query('INSERT INTO `techniciens`(`nom`, `prenom`, `email`,`password`,`Fk_cat`,`img`,`id_ville`) VALUES (:nom,:prenom,:email,:password,:fk_cat,:img,24)');
             $this->db->bind(':nom', $data['nom']);
             $this->db->bind(':prenom', $data['prenom']);
             $this->db->bind(':email', $data['email']);
-            $this->db->bind(':job', $data['job']);
+
             $this->db->bind(':password', $data['password']);
             $this->db->bind(':fk_cat', $fk_cat);
             $this->db->bind(':img', $imgName);
@@ -83,33 +109,56 @@ class Technicien
 
     public function getTech($id_tech)
     {
-        $this->db->query("SELECT * FROM techniciens WHERE id_tech = :id_tech");
+        $this->db->query("SELECT t.Id_tech, t.nom, t.prenom, t.email, t.phone, c.nom metier, t.adresse, v.nom_ville ville, t.secteur, t.img, t.password, t.feedback
+        FROM techniciens t
+        JOIN categories c ON t.Fk_cat = c.id_cat
+        JOIN villes v ON t.id_ville = v.id_ville WHERE id_tech = :id_tech");
         $this->db->bind(':id_tech', $id_tech);
         return $this->db->single();
     }
-
+    public function getVille($id_tech)
+    {
+        $sql = "SELECT techniciens.id_ville, villes.nom_ville
+        FROM techniciens
+        JOIN villes ON techniciens.id_ville = villes.id_ville
+        WHERE techniciens.Id_tech = :id_tech";
+        $this->db->query($sql);
+        $this->db->bind(':id_tech', $id_tech);
+        return $this->db->single();
+    }
+    public function getMetier($id_tech)
+    {
+        $sql = "SELECT techniciens.Fk_cat, categories.nom
+        FROM techniciens
+        JOIN categories ON techniciens.Fk_cat = categories.id_cat
+        WHERE techniciens.Id_tech = :id_tech";
+        $this->db->query($sql);
+        $this->db->bind(':id_tech', $id_tech);
+        return $this->db->single();
+    }
     public function Login($email, $password)
     {
-        $this->db->query("SELECT * FROM techniciens WHERE email = '$email'");
+        $this->db->query("SELECT * FROM techniciens WHERE email = '$email' ");
         return $this->db->single();
     }
 
 
-    public function update($data, $id, $imgName, $Fk_cat)
+    public function update($data, $id, $imgName)
     {
         $this->db->query("UPDATE `techniciens` SET nom=:nom, prenom = :prenom,
      email= :email, phone = :phone ,Fk_cat = :Fk_cat
-     , metier = :metier , password = :password , adresse = :adresse , ville = :ville , img=:img WHERE Id_tech =$id");
+     , password = :password , adresse = :adresse , id_ville = :ville , img=:img,secteur=:sec WHERE Id_tech =$id");
         $this->db->bind(':nom', $data['nom']);
         $this->db->bind(':prenom', $data['prenom']);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':phone', $data['phone']);
-        $this->db->bind(':metier', $data['job']);
+        $this->db->bind(':sec', $data['secteur']);
+
         $this->db->bind(':password', $data['password']);
         $this->db->bind(':adresse', $data['adresse']);
         $this->db->bind(':ville', $data['ville']);
         $this->db->bind(':img', $imgName);
-        $this->db->bind(':Fk_cat', $Fk_cat);
+        $this->db->bind(':Fk_cat', $data['job']);
         $this->db->execute();
     }
 
@@ -127,16 +176,25 @@ class Technicien
         $this->db->query("SELECT count(*) as 'nbr' FROM techniciens WHERE ville = :city or Fk_cat = :id ");
         $this->db->bind(':city', $city);
         $this->db->bind(':id', $id_cat);
-        
+
         return $this->db->resultSet();
     }
-    public function search($city, $id_cat,$ofsset)
+    public function search($city, $job, $secteur)
     {
-        $this->db->query("SELECT * FROM techniciens WHERE ville = :city And Fk_cat = :id LIMIT {$ofsset} , 10");
+        $this->db->query("SELECT t.Id_tech,t.nom,t.prenom,t.email,t.phone,t.adresse ,t.secteur,t.img,t.feedback, v.nom_ville ville, c.nom metier
+        FROM techniciens t
+        JOIN categories c ON t.Fk_cat = c.id_cat
+        JOIN villes v ON t.id_ville = v.id_ville
+        WHERE t.secteur = :sec
+          AND t.id_ville = :city
+          AND t.Fk_cat = :job;
+        ");
+
         $this->db->bind(':city', $city);
-        $this->db->bind(':id', $id_cat);
-       
-        
+        $this->db->bind(':job', $job);
+        $this->db->bind(':sec', $secteur);
+
+
         return $this->db->resultSet();
     }
 
@@ -175,9 +233,9 @@ class Technicien
         $this->db->execute();
     }
 
-    public function insertWork($id,$img ,$des)
+    public function insertWork($id, $img, $des)
     {
-        
+
         $this->db->query('INSERT INTO `images`(`img`,`description`, `fk_tech`) VALUES (:img,:description,:fk_tech)');
         $this->db->bind(':fk_tech', $id);
         $this->db->bind(':img', $img);
@@ -189,18 +247,20 @@ class Technicien
         $this->db->query("SELECT * FROM images Where fk_tech = $id ");
         return $this->db->resultSet();
     }
-    
-    public function deleteWork($id){
-        
+
+    public function deleteWork($id)
+    {
+
         $this->db->query('DELETE FROM `images` WHERE id_img = ' . $id);
         $this->db->execute();
     }
-    public function deleteReview($id){
-        
+    public function deleteReview($id)
+    {
+
         $this->db->query('DELETE FROM `reviews` WHERE id_review = ' . $id);
         $this->db->execute();
     }
-    public function addReview($from,$to,$content)
+    public function addReview($from, $to, $content)
     {
         $this->db->query('INSERT INTO `reviews`(`from_id`,`to_id`, `content`) VALUES (:from,:to,:content)');
         $this->db->bind(':from', $from);
@@ -208,8 +268,14 @@ class Technicien
         $this->db->bind(':content', $content);
         $this->db->execute();
     }
-    public function getReviewsforuser($id){
+    public function getReviewsforuser($id)
+    {
         $this->db->query("SELECT `id_review`, `from_id`, `to_id`, `content`,`nom`,`prenom`,`img` FROM `reviews`,techniciens WHERE to_id = $id AND `techniciens`.`Id_tech` = `reviews`.`from_id` GROUP BY `id_review`");
+        return $this->db->resultSet();
+    }
+    public function searching($search)
+    {
+        $this->db->query("SELECT * FROM technecien WHERE nom LIKE '%$search%' OR prenom LIKE '%$search%' OR ville LIKE '%$search%' OR metier LIKE '%$search%'");
         return $this->db->resultSet();
     }
 }

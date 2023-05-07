@@ -48,12 +48,28 @@
             <div class="col">
               <label class="form-label" for="city"><strong>City</strong></label>
 
-              <select class="form-control select-city" name="ville" id="city" required>
-                <option selected value="<?php echo $data[1]->ville ?>"><?php echo $data[1]->ville ?></option>
+              <select class="form-control select-city" name="ville" id="nom_ville" required>
+                <option selected value="<?php echo $data[4]->id_ville ?>"><?php echo $data[4]->nom_ville ?></option>
+                <?php foreach ($data[3] as $city) : ?>
+                  <option value="<?php echo $city->id_ville ?>"><?php echo $city->nom_ville ?></option>
+                <?php endforeach; ?>
               </select>
             </div>
             <div class="col">
-              <div class="mb-3"><label class="form-label" for="last_name"><strong>phone</strong></label><input class="form-control" type="text" id="last_name" placeholder="Phone" name="phone" value="<?php echo $data[1]->phone; ?>" required></div>
+              <div class="mb-3">
+                <label class="form-label" for=""><strong>secteurs</strong></label>
+                <select class="form-control" name="secteur" id="secteurs" required>
+                  <option value="<?php echo $data[1]->secteur ?>"><?php echo $data[1]->secteur ?></option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                <label class="form-label" for="last_name"><strong>phone</strong></label><input class="form-control" type="text" id="last_name" placeholder="Phone" name="phone" value="<?php echo $data[1]->phone; ?>" required>
+
+              </div>
             </div>
           </div>
           <div class="row">
@@ -61,9 +77,9 @@
               <div class="mb-3">
                 <label class="form-label" for="metier"><strong>Metier</strong></label>
                 <select class="form-control" name="job" id="metier" required>
-                  <option selected value="<?php echo $data[1]->metier ?>"><?php echo $data[1]->metier ?></option>
+                  <option selected value="<?php echo $data[5]->Fk_cat ?>"><?php echo $data[5]->nom ?></option>
                   <?php foreach ($data[2] as $cat) : ?>
-                    <option value="<?php echo $cat->nom ?>"><?php echo $cat->nom ?></option>
+                    <option value="<?php echo $cat->id_cat ?>"><?php echo $cat->nom ?></option>
                   <?php endforeach; ?>
 
 
@@ -107,3 +123,28 @@
   <?php include_once APPROOT . '/views/inc/dashboard/modalDelete.php'; ?>
 
   <?php include_once APPROOT . '/views/inc/linkJS.php'; ?>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var villeSelect = document.getElementById('nom_ville');
+      var secteursSelect = document.getElementById('secteurs');
+      villeSelect.addEventListener('change', function() {
+        var ville = this.value;
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '<?php echo URLROOT ?>/catController/chercherSec', true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+          if (this.readyState === 4 && this.status === 200) {
+            var options = '';
+            // console.log(this.responseText)
+            var secteurs = JSON.parse(this.responseText);
+            for (var i = 0; i < secteurs.length; i++) {
+              options += '<option value="' + secteurs[i].secteur + '">' + secteurs[i].secteur + '</option>';
+            }
+            secteursSelect.innerHTML = options;
+          }
+        };
+        xhr.send('ville=' + ville);
+      });
+    });
+  </script>

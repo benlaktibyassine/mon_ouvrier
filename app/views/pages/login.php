@@ -21,7 +21,7 @@
                                     </div>
 
                                     <form class="user g-3 needs-validation" method="POST" action="<?php echo URLROOT ?>/TechController/login" novalidate>
-                                        <div class="mb-3"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email" required>
+                                        <div class="mb-3"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email"value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>" required>
                                        </div>
                                         <div class="mb-3"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Password" name="password" required></div>
                                         <div class="mb-3">

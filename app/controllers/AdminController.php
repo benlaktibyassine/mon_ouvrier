@@ -1,10 +1,7 @@
 <?php
 class AdminController extends Controller
 {
-    private $username;
-    private $phone;
-    private $email;
-    private $password;
+    
     private $AdminModel;
 
     public function __construct()
@@ -27,7 +24,7 @@ class AdminController extends Controller
             // print_r($dataAdmin);
             // die();
             if ($dataAdmin == false) {
-                redirect('admin/login?error=passwordoremailnotcorrect');
+                redirect('pages/loginAdmin?error=passwordoremailnotcorrect');
             } else {
                 $_SESSION['username'] = $dataAdmin->username;
                 $_SESSION['id'] = $dataAdmin->id_admin;
@@ -106,9 +103,9 @@ class AdminController extends Controller
                 $newImageName .= '.' . $imageExtension;
                 $folder = $_SERVER['DOCUMENT_ROOT'] . '/project-khadamat/public/images/';
                 move_uploaded_file($tmpName, $folder . $newImageName);
-                
+
                 $job_name = $_POST['job_name'];
-            // die($newImageName);
+                // die($newImageName);
 
                 $this->AdminModel->AddJob($job_name, $newImageName);
                 redirect('pages/jobs');
@@ -119,5 +116,28 @@ class AdminController extends Controller
     {
         $this->AdminModel->deleteJob($id);
         redirect('pages/jobs');
+    }
+    public function AddCity()
+    {
+        $ville = $_POST['ville'];
+        $this->AdminModel->AddCity($ville);
+        redirect('pages/villes');
+    }
+    public function deleteCity($id_ville)
+    {
+        $this->AdminModel->DeleteCity($id_ville);
+        redirect('pages/villes');
+    }
+    public function AddSecteur()
+    {
+        $id_ville = $_POST['ville'];
+        $secteur = $_POST['secteur'];
+        $this->AdminModel->AddSecteur($secteur, $id_ville);
+        redirect('pages/secteurs');
+    }
+    public function DeleteSecteur($id_secteur)
+    {
+        $this->AdminModel->DeleteSecteur($id_secteur);
+        redirect('pages/secteurs');
     }
 }
