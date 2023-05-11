@@ -388,7 +388,7 @@ class TechController extends Controller
 
         $YOUR_DOMAIN = 'http://localhost/project-khadamat';
 
-        $priceId = 'price_1N6YQ8G75BGk512Gq4BWVDV2'; // Replace with your actual Price ID
+        $priceId = 'price_1N6YQ8G75BGk512Gq4BWVDV2'; // had id dyal produit katcreeh f stripe
 
         $checkout_session = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],
