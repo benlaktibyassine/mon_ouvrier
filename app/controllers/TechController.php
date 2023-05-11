@@ -144,6 +144,7 @@ class TechController extends Controller
                 $_SESSION['username'] = $dataTech->nom . ' ' . $dataTech->prenom;
                 $_SESSION['id'] = $dataTech->Id_tech;
                 $_SESSION['role'] = 'user';
+                $this->IsSuscribed($_SESSION['id']);
                 redirect('pages/dashboardUser');
             }
         }
@@ -195,9 +196,9 @@ class TechController extends Controller
             $secteur = $_GET['secteur'];
             $job = $_GET['job'];
             // $nbr = $this->TechModel->searchNbr($city, $job)[0]->nbr;
-            
+
             // $dataPageno = $this->paginaion($nbr);
-            
+
             // $offset = $dataPageno['offset'];
             $techSearch = $this->TechModel->search($city, $job, $secteur);
             // die(var_dump( $techSearch));
@@ -317,13 +318,11 @@ class TechController extends Controller
             if (!in_array($imageExtension, $validImageExtension)) {
                 $error_msg = "Le type de l'image est insuportable !? (essayez: 'jpg', 'jpeg', 'png', 'jfif')";
                 redirect('pages/profile?error=' . urlencode($error_msg));
-
             } else if ($fileSize > 1000000000) {
                 $error_msg = "La taille de l'image est trop large !?";
 
                 // Redirect with the error message
                 redirect('pages/profile?error=' . urlencode($error_msg));
-                
             } else {
                 $newImageName = uniqid();
                 $newImageName .= '.' . $imageExtension;
@@ -335,7 +334,6 @@ class TechController extends Controller
                 $error_msg = "Ajouter avec succes";
                 $this->TechModel->insertWork($id, $newImageName, $description);
                 redirect('pages/profile?succes=' . urlencode($error_msg));
-
             }
         }
     }
@@ -380,5 +378,48 @@ class TechController extends Controller
     {
         $serachinput = $_GET['q'];
         return $this->TechModel->searching($serachinput);
+    }
+    public function Abonner()
+    {
+        require_once "../vendor/autoload.php";
+        $stripeSecretKey = 'sk_test_51Mv8imG75BGk512GJqs1fadhGte9cR8nb3cFi8y29WP9IcfwjVPihFCkr0BW76VghMKlU8xoy5KQmmqqIMUZ9YKH005oC9cu4C';
+        \Stripe\Stripe::setApiKey($stripeSecretKey);
+        header('Content-Type: application/json');
+
+        $YOUR_DOMAIN = 'http://localhost/project-khadamat';
+
+        $priceId = 'price_1N6YQ8G75BGk512Gq4BWVDV2'; // Replace with your actual Price ID
+
+        $checkout_session = \Stripe\Checkout\Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price' => $priceId,
+
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => $YOUR_DOMAIN . '/PagesController/dashboardUser',
+            'cancel_url' => $YOUR_DOMAIN . '/PagesController/payement',
+        ]);
+
+        header("HTTP/1.1 303 See Other");
+        header("Location: " . $checkout_session->url);
+    }
+    public function IsSuscribed($id)
+    {
+        $date_expiration = $this->TechModel->IsSuscribed($id)[0]->date_expiration;
+        $date_expiration = new DateTime($date_expiration);
+
+
+        $current_date = new DateTime();
+
+
+        if ($date_expiration >= $current_date) {
+
+            die("Subscription is active.");
+        } else {
+
+            die("Subscription has expired.");
+        }
     }
 }

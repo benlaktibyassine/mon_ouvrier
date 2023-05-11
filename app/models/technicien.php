@@ -278,4 +278,10 @@ class Technicien
         $this->db->query("SELECT * FROM technecien WHERE nom LIKE '%$search%' OR prenom LIKE '%$search%' OR ville LIKE '%$search%' OR metier LIKE '%$search%'");
         return $this->db->resultSet();
     }
+    public function IsSuscribed($id)
+    {
+        $this->db->query("SELECT date_expiration FROM abonnement WHERE id_tech = :id");
+        $this->db->bind(":id",$id);
+        return $this->db->resultSet();
+    }
 }

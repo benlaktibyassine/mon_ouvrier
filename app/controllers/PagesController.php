@@ -185,7 +185,7 @@ class PagesController extends Controller
     $data = [
       ["title" => "payement"]
     ];
-    $this->view('pages/payement', $data);
+    $this->view('pages/checkout', $data);
   }
   public function villes()
   {

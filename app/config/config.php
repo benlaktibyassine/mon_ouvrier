@@ -12,4 +12,3 @@
 define('SITENAME' , "project-khadamat");
 
 session_start();
-?>
