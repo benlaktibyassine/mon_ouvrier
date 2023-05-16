@@ -50,6 +50,8 @@ class TechController extends Controller
                 'password' => trim($dataTech['password']),
                 'Cpassword' => trim($dataTech['Cpassword']),
                 'job' => trim($dataTech['job']),
+                'city'=>trim($dataTech['city']),
+                'secteur'=>trim($dataTech['secteur']),
                 'nom_err' => '',
                 'prenom_err' => '',
                 'email_err' => '',

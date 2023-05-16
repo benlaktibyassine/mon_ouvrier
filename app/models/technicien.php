@@ -96,8 +96,8 @@ class Technicien
         if ($res == 1) {
 
             $this->db->query('START TRANSACTION;
-            INSERT INTO `techniciens`(`nom`, `prenom`, `email`,`password`,`Fk_cat`,`img`,`id_ville`) 
-            VALUES (:nom,:prenom,:email,:password,:fk_cat,:img,24);
+            INSERT INTO `techniciens`(`nom`, `prenom`, `email`,`password`,`Fk_cat`,`img`,`id_ville`,`secteur`) 
+            VALUES (:nom,:prenom,:email,:password,:fk_cat,:img,:ville,:sec);
             SET @id_tech = LAST_INSERT_ID();
             INSERT INTO abonnement (id_tech, date_abn, date_expiration)
             VALUES (@id_tech, NOW(), DATE_ADD(NOW(), INTERVAL 1 MONTH));
@@ -107,6 +107,8 @@ class Technicien
         $this->db->bind(':prenom', $data['prenom']);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
+        $this->db->bind(':ville', $data['city']);
+        $this->db->bind(':sec', $data['secteur']);
         $this->db->bind(':fk_cat', $fk_cat);
         $this->db->bind(':img', $imgName);
         

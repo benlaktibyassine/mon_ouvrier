@@ -29,10 +29,12 @@ class PagesController extends Controller
   public function register()
   {
     $categories = $this->categorieModel->getCategories();
+    $AllCity = $this->technicienModel->getAllCity();
+
 
     $data = [
       ["title" => "register"],
-      $categories
+      $categories,$AllCity
     ];
     $this->view('pages/register', $data);
   }
