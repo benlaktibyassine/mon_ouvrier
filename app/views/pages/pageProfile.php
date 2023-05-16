@@ -139,7 +139,7 @@
                                 <ul>
                                     <li class="h4 list-group-item">
                                         <a href="mailto:<?php echo $data[1]->email  ?>"> <i class="fa-solid fa-envelope"></i></a> Email:
-                                        <?php echo $data[1]->email ;  ?>
+                                        <?php echo $data[1]->email;  ?>
                                     </li>
 
                                     <li class="h4 list-group-item">
@@ -165,25 +165,17 @@
     <section class="d-flex  flex-wrap container">
 
         <?php
-        
+
         foreach ($data[2] as $imgsrc) {
-
         ?>
-            <div class="col-4">
-                <div class=" btn-cat img-hover wow animate__animated animate__bounceInLeft animate__slow  position-relative rounded col-12 col-lg-4  mt-3 overflow-hidden" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-
+            <div class="col-4" style="height: 150px;">
+                <div class=" btn-cat img-hover wow animate__animated animate__bounceInLeft animate__slow  position-relative rounded col-12   mt-3 overflow-hidden" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <img class="img-fluid w-100 h-100" src="<?php echo URLROOT; ?>/public/images/<?php echo $imgsrc->img; ?>">
-
-                    <div class="hover-section-img text-white px-3 py-1  d-flex flex-column justify-content-center align-items-center position-absolute ">
+                    <div class=" w-100 hover-section-img text-white px-3 py-1  d-flex flex-column justify-content-center align-items-center position-absolute end-0">
                         <h4><?php echo $imgsrc->description ?></h4>
-
-
                     </div>
-
-
                 </div>
             </div>
-
         <?php
         }
         ?>
@@ -204,10 +196,10 @@
                                 <img src="<?php echo URLROOT ?>/public/upload/<?php echo $review->img; ?>">
                             </div>
                             <div class="Name">
-                            
+
 
                                 <strong><?php echo $review->nom . " " . $review->prenom ?></strong>
-                               <?php if(isset($_SESSION['id']) &&  $_SESSION['id']==$review->from_id){ ?> <span><a href="<?php echo URLROOT ?>/TechController/deleteReview?rev=<?php echo $review->id_review ?>&id_tech=<?php echo $data[1]->Id_tech ?>"><i class="fa fa-trash"></i></a></span><?php } ?>
+                                <?php if (isset($_SESSION['id']) &&  $_SESSION['id'] == $review->from_id) { ?> <span><a href="<?php echo URLROOT ?>/TechController/deleteReview?rev=<?php echo $review->id_review ?>&id_tech=<?php echo $data[1]->Id_tech ?>"><i class="fa fa-trash"></i></a></span><?php } ?>
 
                             </div>
                         </div>
@@ -224,19 +216,19 @@
         </div>
     </section>
 
-    <div class="container">
+    <div class="container mb-3">
         <form action="<?php echo URLROOT ?>/TechController/addReview/<?php echo $data[1]->Id_tech; ?>" method="post">
             <div class="row">
-                <div class="col m-5">
+                <div class="col">
                     <div class="form-floating">
                         <textarea class="form-control" placeholder="Leave a review here" id="floatingTextarea2" style="height: 100px ;" name="content"></textarea>
                         <label for="floatingTextarea2">Write your review</label>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col d-flex justify-content-center m-3">
-                    <button class="btn btn-success">Submit review</button>
+            <div class="row mt-2">
+                <div class="col d-flex justify-content-center">
+                    <button class="btn btn-primary">Submit review</button>
                 </div>
             </div>
         </form>

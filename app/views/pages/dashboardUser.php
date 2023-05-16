@@ -11,6 +11,15 @@
   <!--Container Main start-->
   <form class="g-3 needs-validation" method="POST" action="<?php echo URLROOT . '/TechController/updateTech/' . $data[1]->Id_tech; ?>" enctype="multipart/form-data" novalidate>
     <div class="mt-7 container">
+      <?php if ($data[6] == false) {
+
+        echo "<div class='alert alert-danger' role='alert'>
+        <p class='text-center'>  
+      Your subscription is expired, your profile will not appear in our website!! 
+      </p>
+      <p class='text-center  mb-0'><a class='btn btn-warning' href='".URLROOT."/pages/payement'>Subscribe now 😁</a></p>
+    </div>";
+      } ?>
       <div class="row gap-lg-2">
         <div class="img ms-2 card-body text-center shadow col-12 col-lg-3 bg-body rounded h-50                                                 ">
           <h5>image profile</h5>
@@ -60,13 +69,13 @@
                 <label class="form-label" for=""><strong>secteurs</strong></label>
                 <select class="form-control" name="secteur" id="secteurs" required>
                   <option value="<?php echo $data[1]->secteur ?>"><?php echo $data[1]->secteur ?></option>
-                  </select>
-                </div>
+                </select>
               </div>
             </div>
-            <div class="row">
-              <div class="col">
-                <div class="mb-3">
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="mb-3">
                 <label class="form-label" for="last_name"><strong>phone</strong></label><input class="form-control" type="text" id="last_name" placeholder="Phone" name="phone" value="<?php echo $data[1]->phone; ?>" required>
 
               </div>

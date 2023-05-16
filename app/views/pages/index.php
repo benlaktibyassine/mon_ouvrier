@@ -264,13 +264,13 @@
     <div class="modal-dialog mt-7">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">ville</h5>
+          <h5 class="modal-title">Ville:</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
 
           <?php foreach ($data[2] as $city) : ?>
-            <button class="btn btn-yellow btn-city"><?php echo $city->ville; ?></button>
+            <button class="btn btn-yellow btn-city m-1"><?php echo $city->nom_ville; ?></button>
           <?php endforeach; ?>
         </div>
       </div>

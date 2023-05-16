@@ -95,15 +95,23 @@ class Technicien
 
         if ($res == 1) {
 
-            $this->db->query('INSERT INTO `techniciens`(`nom`, `prenom`, `email`,`password`,`Fk_cat`,`img`,`id_ville`) VALUES (:nom,:prenom,:email,:password,:fk_cat,:img,24)');
-            $this->db->bind(':nom', $data['nom']);
-            $this->db->bind(':prenom', $data['prenom']);
-            $this->db->bind(':email', $data['email']);
-
-            $this->db->bind(':password', $data['password']);
-            $this->db->bind(':fk_cat', $fk_cat);
-            $this->db->bind(':img', $imgName);
-            $this->db->execute();
+            $this->db->query('START TRANSACTION;
+            INSERT INTO `techniciens`(`nom`, `prenom`, `email`,`password`,`Fk_cat`,`img`,`id_ville`) 
+            VALUES (:nom,:prenom,:email,:password,:fk_cat,:img,24);
+            SET @id_tech = LAST_INSERT_ID();
+            INSERT INTO abonnement (id_tech, date_abn, date_expiration)
+            VALUES (@id_tech, NOW(), DATE_ADD(NOW(), INTERVAL 1 MONTH));
+            COMMIT;');
+        
+        $this->db->bind(':nom', $data['nom']);
+        $this->db->bind(':prenom', $data['prenom']);
+        $this->db->bind(':email', $data['email']);
+        $this->db->bind(':password', $data['password']);
+        $this->db->bind(':fk_cat', $fk_cat);
+        $this->db->bind(':img', $imgName);
+        
+        $this->db->execute();
+        
         }
     }
 
@@ -189,12 +197,22 @@ class Technicien
           AND t.id_ville = :city
           AND t.Fk_cat = :job;
         ");
-
         $this->db->bind(':city', $city);
         $this->db->bind(':job', $job);
         $this->db->bind(':sec', $secteur);
-
-
+        return $this->db->resultSet();
+    }
+    public function chercher($city, $job)
+    {
+        $this->db->query("SELECT t.Id_tech,t.nom,t.prenom,t.email,t.phone,t.adresse ,t.secteur,t.img,t.feedback, v.nom_ville ville, c.nom metier
+        FROM techniciens t
+        JOIN categories c ON t.Fk_cat = c.id_cat
+        JOIN villes v ON t.id_ville = v.id_ville
+        WHERE t.id_ville = :city
+          AND t.Fk_cat = :job;
+        ");
+        $this->db->bind(':city', $city);
+        $this->db->bind(':job', $job);
         return $this->db->resultSet();
     }
 
@@ -278,10 +296,24 @@ class Technicien
         $this->db->query("SELECT * FROM technecien WHERE nom LIKE '%$search%' OR prenom LIKE '%$search%' OR ville LIKE '%$search%' OR metier LIKE '%$search%'");
         return $this->db->resultSet();
     }
-    public function IsSuscribed($id)
+    public function IsSubscribed($id)
     {
         $this->db->query("SELECT date_expiration FROM abonnement WHERE id_tech = :id");
-        $this->db->bind(":id",$id);
+        $this->db->bind(":id", $id);
         return $this->db->resultSet();
+    }
+    public function Subscribe($id)
+    {
+        $this->db->query("UPDATE abonnement
+        SET date_expiration = 
+            CASE 
+                WHEN date_expiration >= DATE(NOW()) 
+                    THEN DATE_ADD(date_expiration, INTERVAL 1 MONTH)
+                ELSE DATE_ADD(DATE(NOW()), INTERVAL 1 MONTH)
+            END
+        WHERE id_tech = :id
+        ");
+        $this->db->bind(':id', $id);
+        $this->db->execute();
     }
 }

@@ -1,4 +1,4 @@
-<header class="position-sticky top-0">
+<header class="position-sticky top-0" style="z-index: 100;">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
       <a class="navbar-brand " href="<?php echo URLROOT ?>"><img src="<?php echo URLROOT; ?>/public/images/logo.svg" alt="logo" width="50"></a>

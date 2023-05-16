@@ -144,7 +144,6 @@ class TechController extends Controller
                 $_SESSION['username'] = $dataTech->nom . ' ' . $dataTech->prenom;
                 $_SESSION['id'] = $dataTech->Id_tech;
                 $_SESSION['role'] = 'user';
-                $this->IsSuscribed($_SESSION['id']);
                 redirect('pages/dashboardUser');
             }
         }
@@ -189,21 +188,15 @@ class TechController extends Controller
 
     public function searchTech()
     {
-
-
         if (isset($_GET['search'])) {
             $city = $_GET['city'];
             $secteur = $_GET['secteur'];
             $job = $_GET['job'];
             // $nbr = $this->TechModel->searchNbr($city, $job)[0]->nbr;
-
             // $dataPageno = $this->paginaion($nbr);
-
             // $offset = $dataPageno['offset'];
             $techSearch = $this->TechModel->search($city, $job, $secteur);
             // die(var_dump( $techSearch));
-
-
             $categories = $this->CatModel->getCategories();
             $AllCity = $this->TechModel->getAllCity();
             $data = [
@@ -212,6 +205,23 @@ class TechController extends Controller
                 $AllCity,
                 $techSearch
 
+            ];
+            $this->view('pages/techSearch', $data);
+        }
+    }
+    public function searchTechn()
+    {
+        if (isset($_GET['search'])) {
+            $city = $_GET['city'];            
+            $job = $_GET['job'];
+            $techSearch = $this->TechModel->chercher($city, $job);
+            $categories = $this->CatModel->getCategories();
+            $AllCity = $this->TechModel->getAllCity();
+            $data = [
+                ['title' => "Result page"],
+                $categories,
+                $AllCity,
+                $techSearch
             ];
             $this->view('pages/techSearch', $data);
         }
@@ -398,16 +408,24 @@ class TechController extends Controller
                 'quantity' => 1,
             ]],
             'mode' => 'payment',
-            'success_url' => $YOUR_DOMAIN . '/PagesController/dashboardUser',
+            'success_url' => $YOUR_DOMAIN . '/TechController/sub',
             'cancel_url' => $YOUR_DOMAIN . '/PagesController/payement',
         ]);
-
         header("HTTP/1.1 303 See Other");
+       
         header("Location: " . $checkout_session->url);
     }
-    public function IsSuscribed($id)
+    public function Sub()
     {
-        $date_expiration = $this->TechModel->IsSuscribed($id)[0]->date_expiration;
+        
+            $id = $_SESSION['id'];
+            $this->TechModel->Subscribe($id);
+            redirect('pages/dashboardUser');
+       
+    }
+    public function IsSubscribed($id)
+    {
+        $date_expiration = $this->TechModel->IsSubscribed($id)[0]->date_expiration;
         $date_expiration = new DateTime($date_expiration);
 
 
@@ -415,11 +433,12 @@ class TechController extends Controller
 
 
         if ($date_expiration >= $current_date) {
-
-            die("Subscription is active.");
+            return true;
+            // die("Subscription is active.");
         } else {
+            return false;
 
-            die("Subscription has expired.");
+            // die("Subscription has expired.");
         }
     }
 }

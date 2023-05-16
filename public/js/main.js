@@ -35,7 +35,7 @@ btnCat.forEach(btn => {
 btnCity.forEach(btn => {
     btn.addEventListener("click",()=>{
         city = btn.innerHTML;
-        window.location.replace(`http://localhost/project-khadamat/TechController/searchTech?job=${idCat}&city=${city}&search=`);
+        window.location.replace(`http://localhost/project-khadamat/TechController/searchTechn?job=${idCat}&city=${city}&search=`);
     })
 });
 
