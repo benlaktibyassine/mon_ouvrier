@@ -8,7 +8,7 @@ class Admin
     {
         $this->db = new Database;
     }
-
+//aaa
 
     // public function Login($username,$password){
     //     $this->db->query("SELECT * FROM admins WHERE username = '$username' and password = '$password'");
