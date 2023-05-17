@@ -101,15 +101,23 @@
         }
     </style>
     <div class="container">
-<div class="d-flex align-items-center justify-content-center">
-        <div class="subscribe mb-5 mt-2">
-            
-            <form action="<?php echo URLROOT ?>/AdminController/AddCity" method="POST">
-            <input placeholder="Ville" class="subscribe-input" name="ville" type="text">
-            <br>
-            <button class="submit-btn" style="border: none;" >Ajouter</button></form>
+
+        <?php if (isset($_GET['error'])) {
+
+            echo "<div class='alert alert-danger' role='alert'>
+        <p class='text-center'>".$_GET['error']."</p>
+        </div>";
+        } ?>
+        <div class="d-flex align-items-center justify-content-center">
+            <div class="subscribe mb-5 mt-2">
+
+                <form action="<?php echo URLROOT ?>/AdminController/AddCity" method="POST">
+                    <input placeholder="Ville" class="subscribe-input" name="ville" type="text" >
+                    <br>
+                    <button class="submit-btn" style="border: none;">Ajouter</button>
+                </form>
+            </div>
         </div>
-</div>
         <h1 class="text-center">Liste Des Villes</h1>
         <table>
             <thead>

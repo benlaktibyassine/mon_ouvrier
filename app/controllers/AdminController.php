@@ -1,7 +1,7 @@
 <?php
 class AdminController extends Controller
 {
-    
+
     private $AdminModel;
 
     public function __construct()
@@ -91,6 +91,7 @@ class AdminController extends Controller
                     alert('Invalid Image Extension');
                   </script>
                   ";
+                redirect('pages/jobs?error=Invalid Image Extension');
             } else if ($fileSize > 1000000000) {
                 echo
                 "
@@ -98,6 +99,7 @@ class AdminController extends Controller
                     alert('Image Size Is Too Large');
                   </script>
                   ";
+                redirect('pages/jobs?error=Image Size Is Too Large');
             } else {
                 $newImageName = uniqid();
                 $newImageName .= '.' . $imageExtension;
@@ -120,8 +122,13 @@ class AdminController extends Controller
     public function AddCity()
     {
         $ville = $_POST['ville'];
-        $this->AdminModel->AddCity($ville);
-        redirect('pages/villes');
+        if (!empty($ville)) {
+            $this->AdminModel->AddCity($ville);
+            redirect('pages/villes');
+        } else {
+            redirect('pages/villes?error=Ville input is empty!!🤨');
+            
+        }
     }
     public function deleteCity($id_ville)
     {

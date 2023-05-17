@@ -17,7 +17,7 @@ class Technicien
         JOIN categories c ON t.Fk_cat = c.id_cat
         JOIN villes v ON t.id_ville = v.id_ville
         ORDER BY t.Id_tech DESC 
-        LIMIT 3;
+        LIMIT 5;
         ");
         return $this->db->resultSet();
     }
@@ -317,5 +317,16 @@ class Technicien
         ");
         $this->db->bind(':id', $id);
         $this->db->execute();
+    }
+    public function AddSub()
+    {
+        
+        $this->db->query("INSERT INTO Subs (date_sub) VALUES (CURRENT_TIMESTAMP);");
+        $this->db->execute();
+    }
+    public function Getsubs()
+    {
+        $this->db->query("SELECT MONTH(date_sub) AS month, YEAR(date_sub) AS year, COUNT(*) AS subs_count FROM Subs GROUP BY YEAR(date_sub), MONTH(date_sub)");
+        return $this->db->resultSet();
     }
 }

@@ -422,6 +422,7 @@ class TechController extends Controller
         
             $id = $_SESSION['id'];
             $this->TechModel->Subscribe($id);
+            $this->TechModel->AddSub();
             redirect('pages/dashboardUser');
        
     }

@@ -1,6 +1,7 @@
 <?php include_once APPROOT . '/views/inc/head.php'; ?>
 
 <body class="bg-blue">
+    <?php include_once APPROOT . '/views/inc/navbar.php'; ?>
 
     <div class="container">
         <div class="row justify-content-center">
@@ -17,11 +18,7 @@
                                     <form class="user" method="POST" action="<?php echo URLROOT ?>/AdminController/login">
                                         <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your username..." name="username"></div>
                                         <div class="mb-3"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Password" name="password"></div>
-                                        <div class="mb-3">
-                                            <div class="custom-control custom-checkbox small">
-                                                <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="formCheck-1"><label class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
-                                            </div>
-                                        </div><button class="btn btn-yellow d-block btn-user w-100" type="submit">Login</button>
+                                        <button class="btn btn-yellow d-block btn-user w-100" type="submit">Login</button>
                                         <div class="d-flex flex-column flex-lg-row">
                                         </div>
                                         <hr>

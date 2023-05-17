@@ -55,13 +55,14 @@ class PagesController extends Controller
       $countTech = $this->technicienModel->countTech();
       $countAdmin = $this->adminModel->countAdmin();
       $lastTech = $this->technicienModel->GetLastTech();
+      $subs = $this->technicienModel->Getsubs();
       $categories = $this->categorieModel->getCategories();
       $nTech = $this->technicienModel->getNumTechCat($countCategories);
 
 
       $data = [
         ["title" => "dashboardAdmin"],
-        $countTech, $countAdmin, $countCategories, $lastTech, $categories, $nTech
+        $countTech, $countAdmin, $countCategories, $lastTech, $categories, $nTech,$subs
       ];
 
       $this->view('pages/dashboardAdmin', $data);
