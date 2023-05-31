@@ -34,7 +34,7 @@ class PagesController extends Controller
 
     $data = [
       ["title" => "register"],
-      $categories,$AllCity
+      $categories, $AllCity
     ];
     $this->view('pages/register', $data);
   }
@@ -62,7 +62,7 @@ class PagesController extends Controller
 
       $data = [
         ["title" => "dashboardAdmin"],
-        $countTech, $countAdmin, $countCategories, $lastTech, $categories, $nTech,$subs
+        $countTech, $countAdmin, $countCategories, $lastTech, $categories, $nTech, $subs
       ];
 
       $this->view('pages/dashboardAdmin', $data);
@@ -231,5 +231,15 @@ class PagesController extends Controller
       $AllCity
     ];
     $this->view('pages/secteurs', $data);
+  }
+  public function stripe()
+  {
+    $infos = $this->technicienModel->getStripe();
+    $data = [
+      ["title" => "Stripe infos"],
+      $infos,
+    ];
+
+    $this->view('pages/stripe', $data);
   }
 }

@@ -14,12 +14,15 @@
         <a href="<?php echo URLROOT ?>/pages/jobs" class="nav_link <?php if ($_GET['url'] == "pages/jobs") {
                                                                       echo 'active';
                                                                     }; ?>"> <i class='bx bxs-briefcase'></i><span class="nav_name">Jobs</span> </a>
-<a href="<?php echo URLROOT ?>/pages/villes" class="nav_link <?php if ($_GET['url'] == "pages/villes") {
-                                                                      echo 'active';
-                                                                    }; ?>"> <i class='bx bx-map'></i><span class="nav_name">Villes</span> </a>
-<a href="<?php echo URLROOT ?>/pages/secteurs" class="nav_link <?php if ($_GET['url'] == "pages/secteurs") {
-                                                                      echo 'active';
-                                                                    }; ?>"> <i class="bx bx-street-view"></i><span class="nav_name">Villes</span> </a>
+        <a href="<?php echo URLROOT ?>/pages/villes" class="nav_link <?php if ($_GET['url'] == "pages/villes") {
+                                                                        echo 'active';
+                                                                      }; ?>"> <i class='bx bx-map'></i><span class="nav_name">Villes</span> </a>
+        <a href="<?php echo URLROOT ?>/pages/secteurs" class="nav_link <?php if ($_GET['url'] == "pages/secteurs") {
+                                                                          echo 'active';
+                                                                        }; ?>"> <i class="bx bx-street-view"></i><span class="nav_name">Secteurs</span> </a>
+        <a href="<?php echo URLROOT ?>/pages/stripe" class="nav_link <?php if ($_GET['url'] == "pages/stripe") {
+                                                                          echo 'active';
+                                                                        }; ?>"> <i class='bx bx-credit-card'></i><span class="nav_name">Stripe infos</span> </a>
 
       </div>
     </div> <a href="<?php echo URLROOT ?>/adminController/Logout" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Logout</span>

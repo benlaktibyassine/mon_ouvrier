@@ -8,7 +8,7 @@ class Admin
     {
         $this->db = new Database;
     }
-//aaa
+    //aaa
 
     // public function Login($username,$password){
     //     $this->db->query("SELECT * FROM admins WHERE username = '$username' and password = '$password'");
@@ -110,6 +110,14 @@ class Admin
     public function DeleteSecteur($idSecteur)
     {
         $this->db->query('DELETE FROM `secteurs` WHERE id_secteur = ' . $idSecteur);
+        $this->db->execute();
+    }
+    public function updateStripe($id, $dataAdmin)
+    {
+        $this->db->query("UPDATE `stripe` SET secret=:secret, price_id = :price_id WHERE id =$id");
+        $this->db->bind(':secret', $dataAdmin['secret']);
+        $this->db->bind(':price_id', $dataAdmin['price_id']);
+
         $this->db->execute();
     }
 }

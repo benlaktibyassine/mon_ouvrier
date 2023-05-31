@@ -147,4 +147,11 @@ class AdminController extends Controller
         $this->AdminModel->DeleteSecteur($id_secteur);
         redirect('pages/secteurs');
     }
+    public function updateStripe($id)
+    {
+        $stripedata=$_POST;
+        $this->AdminModel->updateStripe($id,$stripedata);
+        redirect('pages/stripe');
+        
+    }
 }
