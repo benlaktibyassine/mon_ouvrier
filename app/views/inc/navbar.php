@@ -8,46 +8,48 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active text-dark" aria-current="page" href="<?php echo URLROOT ?>">Home</a>
+            <a class="nav-link active text-dark" aria-current="page" href="<?php echo URLROOT ?>">الصفحة الرئيسية</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-dark" href="#services">Services</a>
-          </li></ul>
-          <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
-
-          ?>
-            <div class="d-flex">
-              <a class="btn btn-primary" href="<?php echo URLROOT ?>/pages/dashboardAdmin">My Profile</a>
-            </div>
-          <?php
-          } ?>
-          <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
-
-          ?>
-            <div class="d-flex">
-              <a class="btn btn-primary" href="<?php echo URLROOT ?>/pages/dashboardUser">My Profile</a>
-            </div>
-       
-      <?php
-          } ?> 
-      <?php if (!$_SESSION) {
-
-      ?>
-        <!-- <li class="nav-item"> -->
+            <a class="nav-link text-dark" href="#services">الخدمات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-dark" aria-current="page" href="<?php echo URLROOT ?>/pages/techSearch">البحث</a>
+          </li>
+        </ul>
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
+        ?>
           <div class="d-flex">
-        <a class="btn text-dark " style="background-color: #fbd23287;" href="<?php echo URLROOT ?>/pages/login">Se Connecter</a></div>
-        <!-- </li> -->
-        <!-- <li class="nav-item">
-            <a class="btn btn-success text-dark" href="<?php echo URLROOT ?>/pages/register">Register</a>
-          </li> -->
+            <a class="btn btn-primary" href="<?php echo URLROOT ?>/pages/dashboardAdmin">ملفي الشخصي</a>
+          </div>
+        <?php
+        } ?>
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') {
 
-      <?php
-      } ?>
+        ?>
+          <div class="d-flex">
+            <a class="btn btn-primary" href="<?php echo URLROOT ?>/pages/dashboardUser">ملفي الشخصي</a>
+          </div>
+
+        <?php
+        } ?>
+        <?php if (!$_SESSION) {
+
+        ?>
+
+          <div class="d-flex">
+            <a class="btn text-dark " style="background-color: #fbd23287;" href="<?php echo URLROOT ?>/pages/login">تسجيل الدخول</a>
+          </div>
+
+
+        <?php
+        } ?>
 
 
 
 
       </div>
     </div>
+
   </nav>
 </header>

@@ -47,10 +47,12 @@ class Technicien
 
     public function getAllTech()
     {
-        $this->db->query("SELECT t.Id_tech, t.nom, t.prenom, t.email, t.phone, c.nom metier, t.adresse, v.nom_ville ville, t.secteur, t.img, t.password, t.feedback
+        $this->db->query("SELECT t.Id_tech, t.nom, t.prenom, t.email, t.phone, c.nom metier, t.adresse, v.nom_ville,t.description ville, t.secteur, t.img, t.password, t.feedback
         FROM techniciens t
         JOIN categories c ON t.Fk_cat = c.id_cat
-        JOIN villes v ON t.id_ville = v.id_ville");
+        JOIN villes v ON t.id_ville = v.id_ville
+        LEFT JOIN abonnement a ON t.Id_tech = a.Id_tech
+        WHERE (a.date_expiration >= NOW())");
         return $this->db->resultSet();
     }
 
@@ -66,12 +68,15 @@ class Technicien
 
     public function getTechTopFeedback()
     {
-        $this->db->query("SELECT t.Id_tech, t.nom, t.prenom, t.email, t.phone, c.nom metier, t.adresse, v.nom_ville ville, t.secteur, t.img, t.password, t.feedback
+        $this->db->query("SELECT t.Id_tech, t.nom, t.prenom, t.email, t.phone, c.nom AS metier, t.adresse, v.nom_ville AS ville, t.secteur, t.img, t.password, t.feedback, t.description
         FROM techniciens t
         JOIN categories c ON t.Fk_cat = c.id_cat
         JOIN villes v ON t.id_ville = v.id_ville
-        ORDER BY t.Id_tech DESC 
+        LEFT JOIN abonnement a ON t.Id_tech = a.Id_tech
+        WHERE (a.date_expiration >= NOW())
+        ORDER BY t.Id_tech DESC
         LIMIT 3;
+        
         ");
         return $this->db->resultSet();
     }
@@ -102,24 +107,23 @@ class Technicien
             INSERT INTO abonnement (id_tech, date_abn, date_expiration)
             VALUES (@id_tech, NOW(), DATE_ADD(NOW(), INTERVAL 1 MONTH));
             COMMIT;');
-        
-        $this->db->bind(':nom', $data['nom']);
-        $this->db->bind(':prenom', $data['prenom']);
-        $this->db->bind(':email', $data['email']);
-        $this->db->bind(':password', $data['password']);
-        $this->db->bind(':ville', $data['city']);
-        $this->db->bind(':sec', $data['secteur']);
-        $this->db->bind(':fk_cat', $fk_cat);
-        $this->db->bind(':img', $imgName);
-        
-        $this->db->execute();
-        
+
+            $this->db->bind(':nom', $data['nom']);
+            $this->db->bind(':prenom', $data['prenom']);
+            $this->db->bind(':email', $data['email']);
+            $this->db->bind(':password', $data['password']);
+            $this->db->bind(':ville', $data['city']);
+            $this->db->bind(':sec', $data['secteur']);
+            $this->db->bind(':fk_cat', $fk_cat);
+            $this->db->bind(':img', $imgName);
+
+            $this->db->execute();
         }
     }
 
     public function getTech($id_tech)
     {
-        $this->db->query("SELECT t.Id_tech, t.nom, t.prenom, t.email, t.phone, c.nom metier, t.adresse, v.nom_ville ville, t.secteur, t.img, t.password, t.feedback
+        $this->db->query("SELECT t.Id_tech, t.nom, t.prenom, t.email, t.phone, c.nom metier, t.adresse, v.nom_ville ville, t.secteur, t.img, t.password, t.feedback,t.description
         FROM techniciens t
         JOIN categories c ON t.Fk_cat = c.id_cat
         JOIN villes v ON t.id_ville = v.id_ville WHERE id_tech = :id_tech");
@@ -156,7 +160,7 @@ class Technicien
     public function update($data, $id, $imgName)
     {
         $this->db->query("UPDATE `techniciens` SET nom=:nom, prenom = :prenom,
-     email= :email, phone = :phone ,Fk_cat = :Fk_cat
+     email= :email, phone = :phone ,Fk_cat = :Fk_cat,description =:desc
      , password = :password , adresse = :adresse , id_ville = :ville , img=:img,secteur=:sec WHERE Id_tech =$id");
         $this->db->bind(':nom', $data['nom']);
         $this->db->bind(':prenom', $data['prenom']);
@@ -169,6 +173,7 @@ class Technicien
         $this->db->bind(':ville', $data['ville']);
         $this->db->bind(':img', $imgName);
         $this->db->bind(':Fk_cat', $data['job']);
+        $this->db->bind(':desc', $data['description']);
         $this->db->execute();
     }
 
@@ -191,11 +196,13 @@ class Technicien
     }
     public function search($city, $job, $secteur)
     {
-        $this->db->query("SELECT t.Id_tech,t.nom,t.prenom,t.email,t.phone,t.adresse ,t.secteur,t.img,t.feedback, v.nom_ville ville, c.nom metier
+        $this->db->query("SELECT t.Id_tech,t.nom,t.prenom,t.email,t.phone,t.adresse ,t.secteur,t.img,t.feedback, v.nom_ville ville, c.nom metier,t.description
         FROM techniciens t
         JOIN categories c ON t.Fk_cat = c.id_cat
         JOIN villes v ON t.id_ville = v.id_ville
-        WHERE t.secteur = :sec
+        LEFT JOIN abonnement a ON t.Id_tech = a.Id_tech
+        WHERE (a.date_expiration >= NOW())
+        and t.secteur = :sec
           AND t.id_ville = :city
           AND t.Fk_cat = :job;
         ");
@@ -210,7 +217,9 @@ class Technicien
         FROM techniciens t
         JOIN categories c ON t.Fk_cat = c.id_cat
         JOIN villes v ON t.id_ville = v.id_ville
-        WHERE t.id_ville = :city
+        LEFT JOIN abonnement a ON t.Id_tech = a.Id_tech
+        WHERE (a.date_expiration >= NOW())
+        and t.id_ville = :city
           AND t.Fk_cat = :job;
         ");
         $this->db->bind(':city', $city);
@@ -320,13 +329,18 @@ class Technicien
     }
     public function AddSub()
     {
-        
+
         $this->db->query("INSERT INTO Subs (date_sub) VALUES (CURRENT_TIMESTAMP);");
         $this->db->execute();
     }
     public function Getsubs()
     {
         $this->db->query("SELECT MONTH(date_sub) AS month, YEAR(date_sub) AS year, COUNT(*) AS subs_count FROM Subs GROUP BY YEAR(date_sub), MONTH(date_sub)");
+        return $this->db->resultSet();
+    }
+    public function getStripe()
+    {
+        $this->db->query("SELECT * FROM stripe");
         return $this->db->resultSet();
     }
 }

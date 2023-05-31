@@ -6,69 +6,68 @@
 
   <main>
 
-    <div class="home position-relative">
-      <div class="container d-flex flex-column-reverse justify-content-between align-items-center flex-md-row">
-        <div class="img animate__animated animate__bounceInLeft animate__slow">
-          <img src="<?php echo URLROOT; ?>/public/images/pngegg (6).png" alt="img" width="370">
-        </div>
-        <div class="info animate__animated animate__bounceInRight animate__slow animate__delay-1s d-flex gap-3 flex-column justify-content-center align-items-center">
-          <h1 class="h1 text-white"><span class="text-yellow ">Professional</span> Services</h1>
-          <p class="px-5 text-center text-white">
-            A WEBSITE THAT YOU CAN FIND A NEW OPPORTUNITY 🙂
-          </p>
-          <div class="buttonHome">
-            <a href="#search" class="btn btn-yellow btn-lg px-3 text-dark">Search</a>
-            <a href="<?php echo URLROOT ?>/pages/register" class="btn btn-yellow btn-lg text-dark">add services</a>
-          </div>
-          <ul class="social-media d-flex mt-3 animate__animated animate__bounceInLeft animate__delay-2s ">
-            <li><a href="https://web.facebook.com/" target="_blank"><i class="fab fa-facebook-f h5 text-black"></i></a>
-            </li>
-            <li><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter h5 text-black"></i></a>
-            </li>
-            <li><a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in f h5 text-black"></i></a>
-            </li>
+  <div class="home position-relative">
+  <div class="container d-flex flex-column-reverse justify-content-between align-items-center flex-md-row">
+    <div class="img animate__animated animate__bounceInLeft animate__slow">
+      <img src="<?php echo URLROOT; ?>/public/images/pngegg (6).png" alt="img" width="370">
+    </div>
+    <div class="info animate__animated animate__bounceInRight animate__slow animate__delay-1s d-flex gap-3 flex-column justify-content-center align-items-center">
+      <h1 class="h1 text-white"><span class="text-yellow ">الخدمات</span> المهنية</h1>
+      <p class="px-5 text-center text-white">
+         🙂  موقع الويب الذي يمكنك من ايجاد فرصة عمل جديدة   
+      </p>
+      <div class="buttonHome">
+        <a href="#search" class="btn btn-yellow btn-lg px-3 text-dark">البحث</a>
+        <a href="<?php echo URLROOT ?>/pages/register" class="btn btn-yellow btn-lg text-dark">اضافة خدمة</a>
+      </div>
+      <ul class="social-media d-flex mt-3 animate__animated animate__bounceInLeft animate__delay-2s ">
+        <li><a href="https://web.facebook.com/" target="_blank"><i class="fab fa-facebook-f h5 text-black"></i></a>
+        </li>
+        <li><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter h5 text-black"></i></a>
+        </li>
+        <li><a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in f h5 text-black"></i></a>
+        </li>
 
-          </ul>
-        </div>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="mb-3 mt-5 container services d-flex flex-column  justify-content-center align-items-center gap-4">
+  <div class="d-flex flex-column flex-lg-row align-items-center gap-5">
+    <div class="wow animate__animated animate__bounceInLeft animate__fast d-flex align-items-center justify-content-center gap-4 me-lg-5">
+      <span class="poligon bg-blue d-flex justify-content-center align-items-center">
+        <i class="fas fa-tools text-white"></i>
+      </span>
+      <div>
+        <h5>فني محترف</h5>
+        <hr>
+        <p>هدفنا هو تقديم أفضل خدمة فني لك.</p>
       </div>
     </div>
 
-    <div class="mb-3 mt-5 container services d-flex flex-column  justify-content-center align-items-center gap-4">
-      <div class="d-flex flex-column flex-lg-row align-items-center gap-5">
-        <div class="wow animate__animated animate__bounceInLeft animate__fast d-flex align-items-center justify-content-center gap-4 me-lg-5">
-          <span class="poligon bg-blue d-flex justify-content-center align-items-center">
-            <i class="fas fa-tools text-white"></i>
-          </span>
-          <div>
-            <h5>Professional Handyman</h5>
-            <hr>
-            <p>Our goal is to provide you the <br>
-              best handyman service.</p>
-          </div>
-        </div>
-
-        <div class=" wow animate__animated animate__bounceInRight animate__slow ms-lg-5 d-flex align-items-center justify-content-center flex-row-reverse flex-lg-row gap-3">
-          <span class="poligon bg-blue d-flex justify-content-center align-items-center">
-            <i class=" text-white fas fa-hand-holding-usd"></i>
-          </span>
-          <div>
-            <h5>Affordable Price</h5>
-            <hr>
-            <p>We provide 24/7 service. <br>
-              Whenever you call, we service you.</p>
-          </div>
-        </div>
+    <div class=" wow animate__animated animate__bounceInRight animate__slow ms-lg-5 d-flex align-items-center justify-content-center flex-row-reverse flex-lg-row gap-3">
+      <span class="poligon bg-blue d-flex justify-content-center align-items-center">
+        <i class=" text-white fas fa-hand-holding-usd"></i>
+      </span>
+      <div>
+        <h5>أسعار معقولة</h5>
+        <hr>
+        <p>نقدم خدمة على مدار الساعة 24/7.
+          في أي وقت تتصل بنا ، نحن نقدم لك الخدمة.</p>
       </div>
+    </div>
+  </div>
+
 
       <div class="wow animate__bounceInUp wow animate__animated animate__slow d-flex align-items-center justify-content-center gap-3">
         <span class="poligon bg-blue d-flex justify-content-center align-items-center">
           <i class=" text-white fas fa-clock"></i>
         </span>
         <div>
-          <h5 id="search">24/7 Services</h5>
+        <h5 id="search">الخدمات على مدار الساعة 24/7</h5>
           <hr>
-          <p>We check for glitches that need <br>
-            attention to keep you safe and save.</p>
+          <p>نقوم بفحص الأعطال التي تحتاج إلى اهتمام للحفاظ على سلامتك وتوفير المال.</p>
         </div>
       </div>
     </div>
@@ -79,43 +78,41 @@
           <img class="imag-search img-fluid" src="<?php echo URLROOT; ?>/public/images/pngegg (3).png" alt="" width="350">
         </div>
         <div class="d-flex align-items-center justify-content-center">
-          <form class="my-5 d-flex flex-column w-100" method="GET" action="<?php echo URLROOT ?>/TechController/searchTech">
-            <div class="input-group mb-3 w-100">
-              <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
-              <select class="form-select form-select-md" aria-label=".form-select-sm example" name="city" id="nom_ville">
-                <option selected>Chercher ville ....</option>
-                <?php foreach ($data[2] as $city) : ?>
-                  <option value="<?php echo $city->id_ville; ?>"><?php echo $city->nom_ville; ?></option>
-                <?php endforeach;  ?>
+        <form class="my-5 d-flex flex-column w-100" method="GET" action="<?php echo URLROOT ?>/TechController/searchTech">
+    <div class="input-group mb-3 w-100">
+        <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+        <select class="form-select form-select-md" aria-label=".form-select-sm example" name="city" id="nom_ville">
+            <option selected>....البحث عن المدينة</option>
+            <?php foreach ($data[2] as $city) : ?>
+                <option value="<?php echo $city->id_ville; ?>"><?php echo $city->nom_ville; ?></option>
+            <?php endforeach;  ?>
+        </select>
+    </div>
+    <div class="input-group mb-3 w-100">
+        <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+        <select class="form-select form-select-md" aria-label=".form-select-sm example" name="secteur" id="secteurs">
+            <option selected>....البحث عن القطاعات</option>
+        </select>
+    </div>
+    <div class="input-group mb-3 text-dark">
+        <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-marker-alt"></i></span>
+        <select class="form-select form-select-md" aria-label=".form-select-sm example" name="job">
+            <option selected name="job">....البحث عن التخصص</option>
+            <?php foreach ($data[1] as $job) : ?>
+                <option value="<?php echo $job->id_cat ?>"><?php echo $job->nom; ?></option>
+            <?php endforeach;  ?>
+        </select>
+    </div>
+    <button type="submit" name="search" class="btn btn-yellow btn-md mt-2 text-dark">بحث</button>
+</form>
 
-              </select>
-            </div>
-            <div class="input-group mb-3 w-100">
-              <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
-              <select class="form-select form-select-md" aria-label=".form-select-sm example" name="secteur" id="secteurs">
-                <option selected>Chercher secteurs ....</option>
-              </select>
-            </div>
-
-            <div class="input-group mb-3 text-dark">
-              <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-marker-alt"></i></span>
-              <select class="form-select form-select-md" aria-label=".form-select-sm example" name="job">
-                <option selected name="job">Chercher specialitée ....</option>
-                <?php foreach ($data[1] as $job) : ?>
-                  <option value="<?php echo $job->id_cat ?>"><?php echo $job->nom; ?></option>
-                <?php endforeach;  ?>
-              </select>
-
-            </div>
-            <button type="submit" name="search" class="btn btn-yellow btn-md mt-2 text-dark">Search</button>
-          </form>
         </div>
       </div>
     </div>
 
     <div class="metier container my-5" id="services">
       <div>
-        <h5 id="searchy">Recherch par emploi</h5>
+        <h5 id="searchy">البحث عن طريق الوظيفة</h5>
       </div>
 
       <div class="row">
@@ -138,7 +135,7 @@
 
     <div class=" container">
       <div>
-        <h5>Top Feedback</h5>
+        <h5>أعلى ردود الفعل</h5>
       </div>
 
       <div class="cards-profile text-dark  d-flex flex-column flex-lg-row gap-4 justify-content-center align-items-center">
@@ -155,9 +152,7 @@
             </div>
             <div class="mt-6 d-flex flex-column justify-content-between align-items-center">
               <h3 id="h3"><?php echo $tech->nom . ' ' . $tech->prenom ?></h3>
-              <p class="text-center">We let our quality work
-                and commitment to customer
-                satisfaction be our slogan.</p>
+              <p class="text-center"><?php echo $tech->description ?></p>
               <a class="btn btn-yellow" href="<?= URLROOT ?>/PagesController/pageProfile/<?= $tech->Id_tech ?>">consult</a>
               <div class="d-flex w-100 justify-content-between">
                 <h4><?php echo $tech->ville; ?></h4>

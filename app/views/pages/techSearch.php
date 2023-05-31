@@ -75,9 +75,7 @@
                   </div>
                   <div class="mt-6 d-flex flex-column justify-content-between align-items-center">
                     <h3><?php echo $tech->nom . ' ' . $tech->prenom ?></h3>
-                    <p class="text-center">We let our quality work
-                      and commitment to customer
-                      satisfaction be our slogan.</p>
+                    <p class="text-center"><?php echo $tech->description ?></p>
                     <a href="<?= URLROOT ?>/PagesController/pageProfile/<?= $tech->Id_tech ?>" class="btn btn-yellow">consult</a>
                     <div class="d-flex w-100 justify-content-between">
                       <h4><?php echo $tech->ville; ?></h4>

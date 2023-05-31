@@ -76,7 +76,15 @@
           <div class="row">
             <div class="col">
               <div class="mb-3">
-                <label class="form-label" for="last_name"><strong>phone</strong></label><input class="form-control" type="text" id="last_name" placeholder="Phone" name="phone" value="<?php echo $data[1]->phone; ?>" required>
+                <label class="form-label" for="last_name"><strong>Phone</strong></label><input class="form-control" type="text" id="last_name" placeholder="Phone" name="phone" value="<?php echo $data[1]->phone; ?>" required>
+
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="mb-3">
+                <label class="form-label" for="last_name"><strong>Description</strong></label><input class="form-control" type="text" id="last_name" placeholder="Description" name="description" value="<?php echo $data[1]->description; ?>" required>
 
               </div>
             </div>

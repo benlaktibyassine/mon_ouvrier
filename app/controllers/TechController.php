@@ -50,8 +50,8 @@ class TechController extends Controller
                 'password' => trim($dataTech['password']),
                 'Cpassword' => trim($dataTech['Cpassword']),
                 'job' => trim($dataTech['job']),
-                'city'=>trim($dataTech['city']),
-                'secteur'=>trim($dataTech['secteur']),
+                'city' => trim($dataTech['city']),
+                'secteur' => trim($dataTech['secteur']),
                 'nom_err' => '',
                 'prenom_err' => '',
                 'email_err' => '',
@@ -214,7 +214,7 @@ class TechController extends Controller
     public function searchTechn()
     {
         if (isset($_GET['search'])) {
-            $city = $_GET['city'];            
+            $city = $_GET['city'];
             $job = $_GET['job'];
             $techSearch = $this->TechModel->chercher($city, $job);
             $categories = $this->CatModel->getCategories();
@@ -394,13 +394,18 @@ class TechController extends Controller
     public function Abonner()
     {
         require_once "../vendor/autoload.php";
-        $stripeSecretKey = 'sk_test_51Mv8imG75BGk512GJqs1fadhGte9cR8nb3cFi8y29WP9IcfwjVPihFCkr0BW76VghMKlU8xoy5KQmmqqIMUZ9YKH005oC9cu4C';
+        $stripe_data = $this->TechModel->getStripe();
+        $secret = $stripe_data[0]->secret;
+        $product_price_id = $stripe_data[0]->price_id;
+
+        
+        $stripeSecretKey = $secret;
         \Stripe\Stripe::setApiKey($stripeSecretKey);
         header('Content-Type: application/json');
 
         $YOUR_DOMAIN = 'http://localhost/project-khadamat';
 
-        $priceId = 'price_1N6YQ8G75BGk512Gq4BWVDV2'; // had id dyal produit katcreeh f stripe
+        $priceId = $product_price_id; // had id dyal produit katcreeh f stripe
 
         $checkout_session = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],
@@ -414,17 +419,16 @@ class TechController extends Controller
             'cancel_url' => $YOUR_DOMAIN . '/PagesController/payement',
         ]);
         header("HTTP/1.1 303 See Other");
-       
+
         header("Location: " . $checkout_session->url);
     }
     public function Sub()
     {
-        
-            $id = $_SESSION['id'];
-            $this->TechModel->Subscribe($id);
-            $this->TechModel->AddSub();
-            redirect('pages/dashboardUser');
-       
+
+        $id = $_SESSION['id'];
+        $this->TechModel->Subscribe($id);
+        $this->TechModel->AddSub();
+        redirect('pages/dashboardUser');
     }
     public function IsSubscribed($id)
     {

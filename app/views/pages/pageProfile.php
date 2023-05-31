@@ -153,6 +153,9 @@
                                     <li class="h4 list-group-item">
                                         <i class="fa-solid fa-location-dot"></i> Ville : <?php echo $data[1]->ville  ?>
                                     </li>
+                                    <li class="h4 list-group-item">
+                                        <i class="fa-solid fa-location-dot"></i> Description : <?php echo $data[1]->description  ?>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -161,7 +164,10 @@
             </div>
         </div>
     </main>
-    <h3 class="text-center">Works</h3>
+    <?php if (count($data[2]) != 0) { ?>
+
+        <h3 class="text-center">Works</h3>
+    
     <section class="d-flex  flex-wrap container">
 
         <?php
@@ -180,8 +186,13 @@
         }
         ?>
     </section>
-    <section class="main">
+    <?php  } ?>
+    <?php if (count($data[3]) != 0) { ?>
+
+
         <h3 class="text-center">Reviews</h3>
+   
+    <section class="main">
         <hr />
         <div class="full-boxer">
             <?php
@@ -215,8 +226,9 @@
 
         </div>
     </section>
+    <?php  } ?>
 
-    <div class="container mb-3">
+    <div class="container my-3">
         <form action="<?php echo URLROOT ?>/TechController/addReview/<?php echo $data[1]->Id_tech; ?>" method="post">
             <div class="row">
                 <div class="col">
