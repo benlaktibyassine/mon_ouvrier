@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2023 at 05:04 PM
+-- Generation Time: May 31, 2023 at 08:19 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -39,8 +39,8 @@ CREATE TABLE `abonnement` (
 --
 
 INSERT INTO `abonnement` (`id_abn`, `id_tech`, `date_abn`, `date_expiration`) VALUES
-(1, 2, '2023-05-11 16:21:06', '2023-06-11 16:21:06'),
-(2, 3, '2023-05-10 17:14:11', '2023-05-14 17:14:11'),
+(1, 2, '2023-05-11 16:21:06', '2023-03-11 16:21:06'),
+(2, 3, '2023-05-10 17:14:11', '2023-04-14 17:14:11'),
 (3, 15, '2023-05-14 17:14:11', '2023-06-17 00:00:00'),
 (4, 16, '2023-05-15 16:47:35', '2023-06-15 00:00:00'),
 (5, 17, '2023-05-16 15:48:53', '2023-06-16 15:48:53');
@@ -108,9 +108,9 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`id_img`, `img`, `fk_tech`, `description`) VALUES
-(1, '64241ef09fae6.jpeg', 2, 'Test'),
 (3, '64580ab1e5d27.png', 8, 'test'),
-(4, '646259fa031bb.png', 16, 'test');
+(4, '646259fa031bb.png', 16, 'test'),
+(5, '64775a4ac850e.png', 2, 'bricoule');
 
 -- --------------------------------------------------------
 
@@ -163,6 +163,25 @@ INSERT INTO `secteurs` (`id_secteur`, `secteur`, `id_ville`) VALUES
 (11, 'Hay Riyad', 2),
 (12, 'Agdal', 2),
 (13, 'Elmdina', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stripe`
+--
+
+CREATE TABLE `stripe` (
+  `id` int(11) NOT NULL,
+  `secret` varchar(255) DEFAULT NULL,
+  `price_id` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `stripe`
+--
+
+INSERT INTO `stripe` (`id`, `secret`, `price_id`) VALUES
+(1, 'sk_test_51Mv8imG75BGk512GJqs1fadhGte9cR8nb3cFi8y29WP9IcfwjVPihFCkr0BW76VghMKlU8xoy5KQmmqqIMUZ9YKH005oC9cu4C', 'price_1N6YQ8G75BGk512Gq4BWVDV2');
 
 -- --------------------------------------------------------
 
@@ -286,20 +305,21 @@ CREATE TABLE `techniciens` (
   `secteur` varchar(255) NOT NULL,
   `img` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `feedback` int(100) NOT NULL
+  `description` text NOT NULL,
+  `feedback` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `techniciens`
 --
 
-INSERT INTO `techniciens` (`Id_tech`, `nom`, `prenom`, `email`, `phone`, `Fk_cat`, `adresse`, `id_ville`, `secteur`, `img`, `password`, `feedback`) VALUES
-(2, 'yassine', 'benlaktib', 'benlaktib@gmail.com', '0624863735', 6, 'mhamid', 1, 'Gueliz', '64285f32d9b6f.jpeg', '$2y$10$rxC67hmgmEjhHki7PQ8/ZeGm3AYxhtqxBQiba6h8bwT5NQ7T3ksEq', 0),
-(3, 'ahmad', 'bodal', 'ahmad@gmail.com', '', 3, '', 2, '', 'imgdefault.png', '$2y$10$NTfzkd2wkio.BgiQm1ZIDeVBBu9KDw/0m4sk9xf2dIUGsnZlXE4t2', 0),
-(8, 'Alexadro', 'Pato', 'alex@gmail.com', '54654534', 3, '12848', 1, 'oualfa', 'imgdefault.png', '$2y$10$WAAxLK44y4vA55EmmMCRA.sypHVLEAQenHVShJzKMAw7mK4NEHacK', 0),
-(15, 'anass', 'anass', 'anass@gmail.com', '06625252542654', 3, 'marrakech', 3, 'Daoudiyat', 'imgdefault.png', '$2y$10$rxC67hmgmEjhHki7PQ8/ZeGm3AYxhtqxBQiba6h8bwT5NQ7T3ksEq', 0),
-(16, 'hamid', 'test', 'hamid@test.com', '0661283850', 3, 'gueliz', 3, 'Gueliz', 'imgdefault.png', '$2y$10$drRXm7LY5nz0.tO7.kdlEO.W80V.hByCO84N6d05QSe8K7jmtIJoW', 0),
-(17, 'yassine', 'bbbbb', 'test77@gmail.com', '', 3, '', 1, 'oualfa', 'imgdefault.png', '$2y$10$x6LHN7qLPwGPabqF7/LWC.xl3.SahriG7Exagp0cOy01F07RIvH.y', 0);
+INSERT INTO `techniciens` (`Id_tech`, `nom`, `prenom`, `email`, `phone`, `Fk_cat`, `adresse`, `id_ville`, `secteur`, `img`, `password`, `description`, `feedback`) VALUES
+(2, 'yassine', 'benlaktib', 'benlaktib@gmail.com', '0624863735', 6, 'mhamid', 3, 'Gueliz', '64285f32d9b6f.jpeg', '$2y$10$rxC67hmgmEjhHki7PQ8/ZeGm3AYxhtqxBQiba6h8bwT5NQ7T3ksEq', 'description test', 0),
+(3, 'ahmad', 'bodal', 'ahmad@gmail.com', '', 3, '', 2, '', 'imgdefault.png', '$2y$10$NTfzkd2wkio.BgiQm1ZIDeVBBu9KDw/0m4sk9xf2dIUGsnZlXE4t2', '', 0),
+(8, 'Alexadro', 'Pato', 'alex@gmail.com', '54654534', 3, '12848', 1, 'oualfa', 'imgdefault.png', '$2y$10$WAAxLK44y4vA55EmmMCRA.sypHVLEAQenHVShJzKMAw7mK4NEHacK', '', 0),
+(15, 'anass', 'anass', 'anass@gmail.com', '06625252542654', 3, 'marrakech', 3, 'Daoudiyat', 'imgdefault.png', '$2y$10$rxC67hmgmEjhHki7PQ8/ZeGm3AYxhtqxBQiba6h8bwT5NQ7T3ksEq', '', 0),
+(16, 'hamid', 'test', 'hamid@test.com', '0661283850', 3, 'gueliz', 3, 'Gueliz', 'imgdefault.png', '$2y$10$drRXm7LY5nz0.tO7.kdlEO.W80V.hByCO84N6d05QSe8K7jmtIJoW', '', 0),
+(17, 'yassine', 'bbbbb', 'test77@gmail.com', '', 3, '', 1, 'oualfa', 'imgdefault.png', '$2y$10$x6LHN7qLPwGPabqF7/LWC.xl3.SahriG7Exagp0cOy01F07RIvH.y', '', 0);
 
 -- --------------------------------------------------------
 
@@ -384,6 +404,12 @@ ALTER TABLE `secteurs`
   ADD KEY `id_ville` (`id_ville`);
 
 --
+-- Indexes for table `stripe`
+--
+ALTER TABLE `stripe`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `subs`
 --
 ALTER TABLE `subs`
@@ -429,7 +455,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id_img` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_img` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `reviews`
@@ -442,6 +468,12 @@ ALTER TABLE `reviews`
 --
 ALTER TABLE `secteurs`
   MODIFY `id_secteur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `stripe`
+--
+ALTER TABLE `stripe`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `subs`
