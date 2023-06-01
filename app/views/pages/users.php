@@ -8,7 +8,7 @@
   <!--Container Main start-->
   <div class="container mt-7">
     <div class="d-flex justify-content-between">
-      <p class="font-weight-bold h5">Users List</p>
+      <p class="font-weight-bold h5">قائمة المستخدمين</p>
 
       <!-- Button trigger modal -->
       <div class="position-sticky top-0">
@@ -20,10 +20,10 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Phone</th>
-            <th>City</th>
-            <th>Job</th>
+            <th>الاسم</th>
+            <th>الهاتف</th>
+            <th>المدينة</th>
+            <th>الوظيفة</th>
             <th></th>
           </tr>
         </thead>
@@ -45,8 +45,8 @@
               <td><?php echo $user->ville; ?></td>
               <td><?php echo $user->metier; ?></td>
               <td>
-                <button class="btn btn-danger btn-sm btnDelete" data-bs-toggle="modal" data-bs-target="#exampleModal2"><span class="d-none"><?php echo $user->Id_tech ?></span> <span class="d-none"><?php echo 'user'; ?></span> delete</button>
-                <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $user->Id_tech ?>">Show</button>
+                <button class="btn btn-danger btn-sm btnDelete" data-bs-toggle="modal" data-bs-target="#exampleModal2"><span class="d-none"><?php echo $user->Id_tech ?></span> <span class="d-none"><?php echo 'user'; ?></span> حذف</button>
+                <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $user->Id_tech ?>">عرض</button>
               </td>
             </tr>
 
@@ -68,7 +68,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">info user</h5>
+              <h5 class="modal-title" id="exampleModalLabel"> معلومات المستخدم</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -85,19 +85,19 @@
                 <table class="table table-hover w-100">
                   <tbody>
                     <tr>
-                      <th>phone</th>
+                      <th>الهاتف</th>
                       <td><?php echo $user->phone ?></td>
                     </tr>
                     <tr>
-                      <th>city</th>
+                      <th>المدينة</th>
                       <td> <?php echo $user->ville ?></td>
                     </tr>
                     <tr>
-                      <th>job</th>
+                      <th>الوظيفة</th>
                       <td><?php echo $user->metier ?></td>
                     </tr>
                     <tr>
-                      <th>adresse</th>
+                      <th>العنوان</th>
                       <td><?php echo $user->adresse ?></td>
                     </tr>
                   </tbody>
@@ -106,7 +106,7 @@
 
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
             </div>
           </div>
         </div>

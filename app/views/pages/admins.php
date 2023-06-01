@@ -8,7 +8,7 @@
   <!--Container Main start-->
   <div class="container mt-7">
     <div class="d-flex justify-content-between">
-        <p class="font-weight-bold h5">Admins list</p>
+        <p class="font-weight-bold h5">قائمة المسؤولين</p>
         
         <!-- Button trigger modal -->
         <!-- gfhhggj -->
@@ -24,9 +24,9 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Username</th>
-                    <th>Phone</th>
-                    <th>Password</th>
+                    <th>المستخدم</th>
+                    <th>الهاتف</th>
+                    <th>كلمة المرور</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -51,9 +51,9 @@
                     <td>
                     </td>
                     <td>
-                    <button class="btn btn-danger btn-sm btnDelete" data-bs-toggle="modal" data-bs-target="#exampleModal2"><span class="idAdmin d-none"><?php echo $admin->id_admin ?></span> <span class="d-none"><?php echo 'admin';?></span> delete</button>
+                    <button class="btn btn-danger btn-sm btnDelete" data-bs-toggle="modal" data-bs-target="#exampleModal2"><span class="idAdmin d-none"><?php echo $admin->id_admin ?></span> <span class="d-none"><?php echo 'admin';?></span> حذف</button>
 
-                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modaleUpdate<?php echo $admin->id_admin;?>" data-bs-whatever="@mdo"">update</button>
+                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modaleUpdate<?php echo $admin->id_admin;?>" data-bs-whatever="@mdo"">تحديث</button>
 
                     </td>
                      
@@ -66,7 +66,7 @@
                           <div class="modal-dialog">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Update Admin</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">تحديث المسؤول</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>
                               <div class="modal-body">
@@ -74,27 +74,28 @@
                               <p class="vide-msg alert-danger text-center "></p>
                                 <div class="mb-4 d-flex gap-4">
                                   <div class="name">
-                                    <label for="full_name" class="form-label">userName</label> <span class="valid text-danger"></span>
+                                    <label for="full_name" class="form-label">اسم المستخدم</label> <span class="valid text-danger"></span>
                                     <input placeholder="Enter full_namet" type="text" class="form-control" id="full_name" aria-describedby="emailHelp" name="username" value="<?php echo $admin->username; ?>" required>
                                   </div>
                                   <div class="phone">
-                                    <label for="matricule" class="form-label">Phone</label> <span class="valid text-danger"></span>
+                                    <label for="matricule" class="form-label">الهاتف</label> <span class="valid text-danger"></span>
                                     <input placeholder="Enter matricule" type="text" class="form-control" id="matricule" aria-describedby="emailHelp" name="phone" value="<?php echo $admin->phone; ?>" required>
                                   </div>
                                 </div>
                                 <div class="mb-4 d-flex gap-4">
                                   <div class="name">
-                                    <label for="password" class="form-label">password</label> <span class="valid text-danger"></span>
+                                    <label for="password" class="form-label">كلمة المرور
+</label> <span class="valid text-danger"></span>
                                     <input placeholder="Enter Mot de Passe" type="password" class="form-control" id="name" aria-describedby="emailHelp" name="password" value="<?php echo $admin->password; ?>" required>
                                   </div>
                                   <div class="phone">
-                                    <label for="cpassword" class="form-label"> confirmer password</label> <span class="valid text-danger"></span>
+                                    <label for="cpassword" class="form-label"> تأكيد كلمة المرور</label> <span class="valid text-danger"></span>
                                     <input placeholder="Enter Mot de Passe" type="password" class="form-control" id="cpassword" aria-describedby="emailHelp" name="cpassword" required>
                                   </div>
                                 </div>
                                 <div class="button">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" name="submitContact" class="btn btn-primary">save</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                                    <button type="submit" name="submitContact" class="btn btn-primary">حفظ</button>
                                 </div>
                               </form>
                               </div>

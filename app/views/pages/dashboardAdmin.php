@@ -11,7 +11,7 @@
             <div class="col-md-4 ">
                 <div class="stat-card bg-white">
                     <div class="stat-card__content">
-                        <h4 class="text-uppercase mb-1">Users</h4>
+                        <h4 class="text-uppercase mb-1">المستخدمون</h4>
                         <h2><i class="fa fa-dollar"></i><?php echo $data[1]; ?></h2>
 
                     </div>
@@ -25,7 +25,7 @@
             <div class="col-md-4">
                 <div class="stat-card bg-white">
                     <div class="stat-card__content">
-                        <h4 class="text-uppercase mb-1">Admins</h4>
+                        <h4 class="text-uppercase mb-1">مسؤول</h4>
                         <h2><?php echo $data[2]; ?></h2>
                     </div>
                     <div class="stat-card__icon stat-card__icon--primary">
@@ -39,7 +39,7 @@
             <div class="col-md-4">
                 <div class="stat-card bg-white">
                     <div class="stat-card__content">
-                        <h4 class="text-uppercase mb-1">Categories</h4>
+                        <h4 class="text-uppercase mb-1">الفئات </h4>
                         <h2><?php echo $data[3]; ?></h2>
 
                     </div>
@@ -52,7 +52,7 @@
             </div>
             <div class="row gap-lg-5">
                 <div class="new-users col-12 col-lg-6 shadow-lg p-3 mb-5 bg-body rounded">
-                    <h5>new Users</h5>
+                    <h5>المستخدمون الجدد</h5>
                     <hr>
                     <div class="users d-flex flex-column gap-3">
                         <?php
@@ -84,8 +84,8 @@
     <script>
         function drawChart(data) {
   const months = [
-    'January', 'February', 'March', 'April', 'May', 'June', 'July',
-    'August', 'September', 'October', 'November', 'December'
+    'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو',
+    'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'
   ];
 
   const chartData = {
