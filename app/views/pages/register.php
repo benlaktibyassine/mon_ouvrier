@@ -76,7 +76,7 @@
                                         <div class="alert alert-danger form-control-user py-1 text-center d-none valid">تأكيد كلمة المرور غير صالح</div>
                                     </div>
                                 </div><button type="submit" name="submit" class="btn btn-yellow d-block btn-user w-100 submit">
-تسجيل حساب في العربية يترجم إلى "</button>
+تسجيل حساب "</button>
                                 <hr>
 
 

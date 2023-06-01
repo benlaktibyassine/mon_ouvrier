@@ -11,14 +11,14 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                     <?php if(isset($_GET['error'])){?>
-                                        <span class="alert alert-danger text-center py-1 mb-2">email or password not valid</span>
+                                        <span class="alert alert-danger text-center py-1 mb-2"> البريد الإلكتروني أو كلمةالمرور غير صحيحة </span>
                                     <?php } ?>
-                                        <h4 class="text-dark mb-4">Login Admin</h4>
+                                        <h4 class="text-dark mb-4">تسجيل الدخول كمسؤول</h4>
                                     </div>
                                     <form class="user" method="POST" action="<?php echo URLROOT ?>/AdminController/login">
-                                        <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your username..." name="username"></div>
-                                        <div class="mb-3"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Password" name="password"></div>
-                                        <button class="btn btn-yellow d-block btn-user w-100" type="submit">Login</button>
+                                        <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="...أدخل اسم المستخدم الخاص بك" name="username"></div>
+                                        <div class="mb-3"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="كلمة المرور" name="password"></div>
+                                        <button class="btn btn-yellow d-block btn-user w-100" type="submit">تسجيل الدخول</button>
                                         <div class="d-flex flex-column flex-lg-row">
                                         </div>
                                         <hr>
