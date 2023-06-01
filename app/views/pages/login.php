@@ -17,22 +17,22 @@
                                     <?php if(isset($data['error'])){?>
                                         <span class="alert alert-danger text-center py-1 mb-2">email or password not valid</span>
                                     <?php } ?>
-                                        <h4 class="text-dark mb-4">Welcome Back!</h4>
+                                        <h4 class="text-dark mb-4">مرحبًا بك مرة أخرى</h4>
                                     </div>
 
                                     <form class="user g-3 needs-validation" method="POST" action="<?php echo URLROOT ?>/TechController/login" novalidate>
-                                        <div class="mb-3"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email"value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>" required>
+                                        <div class="mb-3"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="...عنوان البريد الإلكتروني" name="email"value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>" required>
                                        </div>
-                                        <div class="mb-3"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Password" name="password" required></div>
+                                        <div class="mb-3"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="كلمة مرور" name="password" required></div>
                                         <div class="mb-3">
                                             <div class="custom-control custom-checkbox small">
                                                 <!-- <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="formCheck-1"><label class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div> -->
                                             </div>
-                                        </div><button class="btn btn-yellow d-block btn-user w-100" type="submit">Login</button>
+                                        </div><button class="btn btn-yellow d-block btn-user w-100" type="submit">تسجيل الدخول</button>
                                         <hr>
                                         
                                     </form>
-                                    <div class="text-center"><a class="small" href="<?php echo URLROOT ?>/pages/register">Create an Account!</a></div>
+                                    <div class="text-center"><a class="small" href="<?php echo URLROOT ?>/pages/register">!إنشاء حساب</a></div>
                                 </div>
                             </div>
                         </div>
