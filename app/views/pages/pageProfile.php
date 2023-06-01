@@ -138,23 +138,23 @@
                             <div class="row">
                                 <ul>
                                     <li class="h4 list-group-item">
-                                        <a href="mailto:<?php echo $data[1]->email  ?>"> <i class="fa-solid fa-envelope"></i></a> Email:
+                                        <a href="mailto:<?php echo $data[1]->email  ?>"> <i class="fa-solid fa-envelope"></i></a> البريد الإلكتروني:
                                         <?php echo $data[1]->email;  ?>
                                     </li>
 
                                     <li class="h4 list-group-item">
-                                        <i class="fa-solid fa-briefcase"></i> Metier : <?php echo $data[1]->metier  ?>
+                                        <i class="fa-solid fa-briefcase"></i> مهنة : <?php echo $data[1]->metier  ?> 
                                     </li>
 
                                     <li class="h4 list-group-item">
-                                        <a href="tel:<?php echo $data[1]->phone  ?>"> <i class="fa-solid fa-phone"></i></a> Telphone : <?php echo $data[1]->phone  ?>
+                                        <a href="tel:<?php echo $data[1]->phone  ?>"> <i class="fa-solid fa-phone"></i></a> الهاتف : <?php echo $data[1]->phone  ?>
                                     </li>
 
                                     <li class="h4 list-group-item">
-                                        <i class="fa-solid fa-location-dot"></i> Ville : <?php echo $data[1]->ville  ?>
+                                        <i class="fa-solid fa-location-dot"></i> مدينة : <?php echo $data[1]->ville  ?>
                                     </li>
                                     <li class="h4 list-group-item">
-                                        <i class="fa-solid fa-location-dot"></i> Description : <?php echo $data[1]->description  ?>
+                                        <i class="fa-solid fa-location-dot"></i> وصف : <?php echo $data[1]->description  ?>
                                     </li>
                                 </ul>
                             </div>
@@ -166,7 +166,7 @@
     </main>
     <?php if (count($data[2]) != 0) { ?>
 
-        <h3 class="text-center">Works</h3>
+        <h3 class="text-center">أعمال</h3>
     
     <section class="d-flex  flex-wrap container">
 
@@ -190,7 +190,7 @@
     <?php if (count($data[3]) != 0) { ?>
 
 
-        <h3 class="text-center">Reviews</h3>
+        <h3 class="text-center">مراجعات</h3>
    
     <section class="main">
         <hr />
@@ -234,13 +234,13 @@
                 <div class="col">
                     <div class="form-floating">
                         <textarea class="form-control" placeholder="Leave a review here" id="floatingTextarea2" style="height: 100px ;" name="content"></textarea>
-                        <label for="floatingTextarea2">Write your review</label>
+                        <label for="floatingTextarea2">يرجى كتابة مراجعتك هنا</label>
                     </div>
                 </div>
             </div>
             <div class="row mt-2">
                 <div class="col d-flex justify-content-center">
-                    <button class="btn btn-primary">Submit review</button>
+                    <button class="btn btn-primary">قدم المراجعة </button>
                 </div>
             </div>
         </form>

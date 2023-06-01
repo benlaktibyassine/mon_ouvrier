@@ -124,7 +124,7 @@
             <div class=" w-100 hover-section-img text-white px-3 py-1  d-flex flex-column justify-content-center align-items-center position-absolute end-0">
               <h4><?php echo $job->nom ?></h4>
               <p><?php echo $job->description ?> </p>
-              <button class="btn btn-yellow text-dark">Consulter</button>
+              <button class="btn btn-yellow text-dark">التصفح</button>
 
             </div>
           </div>
@@ -170,7 +170,7 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="info-ser">info user</h5>
+                  <h5 class="modal-title" id="info-ser">معلومات المستخدم</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -187,19 +187,19 @@
                     <table class="table table-hover w-100">
                       <tbody>
                         <tr>
-                          <th>phone</th>
+                          <th>هاتف</th>
                           <td><?php echo $tech->phone ?></td>
                         </tr>
                         <tr>
-                          <th>city</th>
+                          <th>مدينة</th>
                           <td> <?php echo $tech->ville ?></td>
                         </tr>
                         <tr>
-                          <th>job</th>
+                          <th>وظيفة</th>
                           <td><?php echo $tech->metier ?></td>
                         </tr>
                         <tr>
-                          <th>Adresse</th>
+                          <th>عنوان</th>
                           <td><?php echo $tech->adresse ?></td>
                         </tr>
                       </tbody>
@@ -227,7 +227,7 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">add feedback</h5>
+                <h5 class="modal-title" id="exampleModalLabel">أضف رأيك</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
@@ -237,8 +237,8 @@
                   <?php } ?>
                 </span>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button class="btn btn-yellow btn-feedback">add feedback</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                  <button class="btn btn-yellow btn-feedback">أضف رأيك</button>
                 </div>
               </div>
             </div>
@@ -259,7 +259,7 @@
     <div class="modal-dialog mt-7">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Ville:</h5>
+          <h5 class="modal-title">:مدينة</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">

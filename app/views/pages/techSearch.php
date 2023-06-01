@@ -9,7 +9,7 @@
 
     <div class=" container">
 
-      <p class="text-center mb-0 text-black">Chercher Un Ouvrier pour votre besoin ❤️</p>
+      <p class="text-center mb-0 text-black"> ❤️ البحث عن عامل لتلبية احتياجاتك</p>
       <div class="d-flex align-items-center justify-content-center mt-1">
         <div class="row">
           <div class="col ">
@@ -19,7 +19,7 @@
               <div class="input-group mb-3 w-100">
                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
                 <select class="form-select form-select-md" aria-label=".form-select-sm example" name="city" id="nom_ville">
-                  <option selected>Chercher ville ....</option>
+                  <option selected>.... لبحث عن مدينة</option>
                   <?php foreach ($data[2] as $city) : ?>
                     <option value="<?php echo $city->id_ville; ?>"><?php echo $city->nom_ville; ?></option>
                   <?php endforeach;  ?>
@@ -29,21 +29,21 @@
               <div class="input-group mb-3 w-100">
                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
                 <select class="form-select form-select-md" aria-label=".form-select-sm example" name="secteur" id="secteurs">
-                  <option selected>Chercher secteurs ....</option>
+                  <option selected>.... لبحث عن أحياء المدينة</option>
                 </select>
               </div>
 
               <div class="input-group mb-3 text-dark">
                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-marker-alt"></i></span>
                 <select class="form-select form-select-md" aria-label=".form-select-sm example" name="job">
-                  <option selected name="job">Chercher specialitée ....</option>
+                  <option selected name="job">.... البحث عن التخصص</option>
                   <?php foreach ($data[1] as $job) : ?>
                     <option value="<?php echo $job->id_cat ?>"><?php echo $job->nom; ?></option>
                   <?php endforeach;  ?>
                 </select>
 
               </div>
-              <button type="submit" name="search" class="btn btn-yellow btn-md mt-2 text-dark">Search</button>
+              <button type="submit" name="search" class="btn btn-yellow btn-md mt-2 text-dark">البحث</button>
             </form>
 
           </div>
@@ -54,7 +54,7 @@
 
       if (empty($data[3])) { ?>
         <div class="my-5 d-flex flex-column justify-content-center align-items-center">
-          <div class="alert alert-danger text-center h3">Not result</div>
+          <div class="alert alert-danger text-center h3">لا نتائج</div>
 
         </div>
       <?php } else { ?>
