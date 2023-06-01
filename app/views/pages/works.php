@@ -32,13 +32,13 @@
     }
     ?>
     <div class="d-flex justify-content-between">
-      <p class="font-weight-bold h5">images works</p>
+      <p class="font-weight-bold h5">صور الأعمال</p>
 
       <div>
         <form action="<?php echo URLROOT ?>/TechController/insertMultiplImg/<?php echo $data[1]->Id_tech; ?>" method="POST" enctype="multipart/form-data">
-          <label for="">Wok description<input type="text" name="description" class="form-control form-control-user nom" required /> </label>
+          <label for="">وصف العمل<input type="text" name="description" class="form-control form-control-user nom" required /> </label>
           <input type="file" name="image" multiple required>
-          <button class="btn btn-primary" type="submit" name="submit">add images</button>
+          <button class="btn btn-primary" type="submit" name="submit">إضافة صور</button>
         </form>
       </div>
       <div class="table-responsive contacts list-contacts">
@@ -46,7 +46,7 @@
 
       </div>
     </div>
-    <h2>Works:</h2>
+    <h2>:الأعمال</h2>
     <div class="conatiner">
       <div class="row">
         <?php
