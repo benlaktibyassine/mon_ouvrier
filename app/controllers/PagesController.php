@@ -34,10 +34,13 @@ class PagesController extends Controller
   {
     $categories = $this->categorieModel->getCategories();
     $AllCity = $this->technicienModel->getAllCity();
+    $logo = $this->adminModel->getlogo();
 
 
     $data = [
-      ["title" => "register"],
+      ["title" => "register",
+      "logo" => $logo,
+    ],
       $categories, $AllCity
     ];
     $this->view('pages/register', $data);
@@ -45,8 +48,12 @@ class PagesController extends Controller
 
   public function login()
   {
+    $logo = $this->adminModel->getlogo();
+
     $data = [
-      ["title" => "login"]
+      [
+        "title" => "login","logo" => $logo
+      ]
     ];
     $this->view('pages/login', $data);
   }
@@ -62,10 +69,13 @@ class PagesController extends Controller
       $subs = $this->technicienModel->Getsubs();
       $categories = $this->categorieModel->getCategories();
       $nTech = $this->technicienModel->getNumTechCat($countCategories);
+      $logo = $this->adminModel->getlogo();
 
 
       $data = [
-        ["title" => "dashboardAdmin"],
+        ["title" => "dashboardAdmin",
+        "logo" => $logo,
+      ],
         $countTech, $countAdmin, $countCategories, $lastTech, $categories, $nTech, $subs
       ];
 
@@ -81,8 +91,12 @@ class PagesController extends Controller
       redirect('pages/loginAdmin');
     } else {
       $AllTech = $this->technicienModel->getAllTech();
+      $logo = $this->adminModel->getlogo();
+
       $data = [
-        ["title" => "dashboardAdmin"],
+        ["title" => "dashboardAdmin",
+        "logo" => $logo,
+      ],
         $AllTech
       ];
       $this->view('pages/users', $data);
@@ -95,8 +109,12 @@ class PagesController extends Controller
       redirect('pages/loginAdmin');
     } else {
       $dataAdmins = $this->adminModel->getAllAdmin();
+      $logo = $this->adminModel->getlogo();
+
       $data = [
-        ["title" => "dashboardAdmin"],
+        ["title" => "dashboardAdmin",
+        "logo" => $logo,
+      ],
         $dataAdmins
       ];
       $this->view('pages/admins', $data);
@@ -107,9 +125,13 @@ class PagesController extends Controller
     if (!$_SESSION['role'] == "admin") {
       redirect('pages/loginAdmin');
     } else {
+      $logo = $this->adminModel->getlogo();
+
       $cats = $this->categorieModel->getCategories();
       $data = [
-        ["title" => "Add Jobs"],
+        ["title" => "Add Jobs",
+        "logo" => $logo,
+      ],
         $cats
       ];
       $this->view('pages/jobs', $data);
@@ -143,11 +165,14 @@ class PagesController extends Controller
       $metier = $this->technicienModel->getMetier($_SESSION['id']);
       $sub = $this->IsSubscribed($_SESSION['id']);
       $categories = $this->categorieModel->getCategories();
+      $logo = $this->adminModel->getlogo();
 
       $AllCity = $this->technicienModel->getAllCity();
 
       $data = [
-        ["title" => "dashboardUser"],
+        ["title" => "dashboardUser",
+        "logo" => $logo,
+      ],
         $dataTech, $categories, $AllCity, $ville, $metier, $sub
       ];
       $this->view('pages/dashboardUser', $data);
@@ -158,8 +183,12 @@ class PagesController extends Controller
 
   public function loginAdmin()
   {
+    $logo = $this->adminModel->getlogo();
+
     $data = [
-      ["title" => "loginAdmin"]
+      ["title" => "loginAdmin",
+      "logo" => $logo,
+      ]
     ];
     $this->view('pages/loginAdmin', $data);
   }
@@ -187,8 +216,11 @@ class PagesController extends Controller
     } else {
       $dataTech = $this->technicienModel->getTech($_SESSION['id']);
       $dataWorks = $this->technicienModel->getWorks($_SESSION['id']);
+      $logo = $this->adminModel->getlogo();
+
       $data = [
-        ["title" => "Works"],
+        ["title" => "Works",        "logo" => $logo,
+      ],
         $dataTech, $dataWorks
       ];
       $this->view('pages/works', $data);
@@ -200,9 +232,11 @@ class PagesController extends Controller
     $dataWorks = $this->technicienModel->getWorks($id);
     $reviews = $this->technicienModel->getReviewsforuser($id);
 
+    $logo = $this->adminModel->getlogo();
 
     $data = [
-      ["title" => "ProfilePage"],
+      ["title" => "ProfilePage",        "logo" => $logo,
+    ],
       $tech,
       $dataWorks,
       $reviews
@@ -228,8 +262,12 @@ class PagesController extends Controller
       redirect('pages/loginAdmin');
     } else {
       $AllCity = $this->adminModel->villes();
+      $logo = $this->adminModel->getlogo();
+
       $data = [
-        ["title" => "Villes"],
+        ["title" => "Villes",
+        "logo" => $logo,
+      ],
         $AllCity
       ];
       $this->view('pages/villes', $data);
@@ -239,8 +277,12 @@ class PagesController extends Controller
   {
     $secteurs = $this->adminModel->secteurs();
     $AllCity = $this->adminModel->villes();
+    $logo = $this->adminModel->getlogo();
+
     $data = [
-      ["title" => "Secteurs"],
+      ["title" => "Secteurs",
+      "logo" => $logo,
+    ],
       $secteurs,
       $AllCity
     ];
@@ -266,8 +308,12 @@ class PagesController extends Controller
       redirect('pages/loginAdmin');
     } else {
       $logo = $this->adminModel->getlogo();
+      
       $data = [
-        ["title" => "Logo"],
+        ["title" => "Logo",
+        "logo" => $logo,
+
+      ],
         $logo
 
       ];

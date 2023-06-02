@@ -100,13 +100,13 @@ class Technicien
 
         if ($res == 1) {
 
-            $this->db->query('START TRANSACTION;
-            INSERT INTO `techniciens`(`nom`, `prenom`, `email`,`password`,`Fk_cat`,`img`,`id_ville`,`secteur`) 
-            VALUES (:nom,:prenom,:email,:password,:fk_cat,:img,:ville,:sec);
+            $this->db->query("START TRANSACTION;
+            INSERT INTO `techniciens`(`nom`, `prenom`, `email`,`password`,`Fk_cat`,`img`,`id_ville`,`secteur`, `description`) 
+            VALUES (:nom,:prenom,:email,:password,:fk_cat,:img,:ville,:sec,'خبير عمل مستقل جاهز للتحديات. اخترني لمشروعك القادم');
             SET @id_tech = LAST_INSERT_ID();
             INSERT INTO abonnement (id_tech, date_abn, date_expiration)
             VALUES (@id_tech, NOW(), DATE_ADD(NOW(), INTERVAL 1 MONTH));
-            COMMIT;');
+            COMMIT;");
 
             $this->db->bind(':nom', $data['nom']);
             $this->db->bind(':prenom', $data['prenom']);

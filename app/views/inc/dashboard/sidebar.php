@@ -1,6 +1,6 @@
 <div class="l-navbar" id="nav-bar">
   <nav class="nav">
-    <div> <a href="<?php echo URLROOT ?>" class="nav_logo"> <img src="<?php echo URLROOT; ?>/public/images/logo.svg" alt="logo" width="30"> <span class="nav_logo-name">Home</span> </a>
+    <div> <a href="<?php echo URLROOT ?>" class="nav_logo"> <img src="<?php echo URLROOT . '/public/images/' . $data[0]['logo'][0]->logo_src?>" alt="logo" width="30"> <span class="nav_logo-name">Home</span> </a>
       <div class="nav_list"> <a href="<?php echo URLROOT ?>/pages/dashboardAdmin" class="nav_link <?php if ($_GET['url'] == "pages/dashboardAdmin") {
                                                                                                     echo 'active';
                                                                                                   }; ?>"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a>
