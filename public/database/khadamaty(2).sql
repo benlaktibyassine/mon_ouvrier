@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2023 at 08:19 PM
+-- Generation Time: Jun 02, 2023 at 03:54 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -111,6 +111,24 @@ INSERT INTO `images` (`id_img`, `img`, `fk_tech`, `description`) VALUES
 (3, '64580ab1e5d27.png', 8, 'test'),
 (4, '646259fa031bb.png', 16, 'test'),
 (5, '64775a4ac850e.png', 2, 'bricoule');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logo`
+--
+
+CREATE TABLE `logo` (
+  `id` int(11) NOT NULL,
+  `logo_src` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `logo`
+--
+
+INSERT INTO `logo` (`id`, `logo_src`) VALUES
+(1, '64793bd128829.svg');
 
 -- --------------------------------------------------------
 
@@ -314,7 +332,7 @@ CREATE TABLE `techniciens` (
 --
 
 INSERT INTO `techniciens` (`Id_tech`, `nom`, `prenom`, `email`, `phone`, `Fk_cat`, `adresse`, `id_ville`, `secteur`, `img`, `password`, `description`, `feedback`) VALUES
-(2, 'yassine', 'benlaktib', 'benlaktib@gmail.com', '0624863735', 6, 'mhamid', 3, 'Gueliz', '64285f32d9b6f.jpeg', '$2y$10$rxC67hmgmEjhHki7PQ8/ZeGm3AYxhtqxBQiba6h8bwT5NQ7T3ksEq', 'description test', 0),
+(2, 'yassine', 'benlaktib', 'benlaktib@gmail.com', '0624863735', 6, 'mhamid', 3, 'Gueliz', '64285f32d9b6f.jpeg', '$2y$10$rxC67hmgmEjhHki7PQ8/ZeGm3AYxhtqxBQiba6h8bwT5NQ7T3ksEq', 'تريسيان ناضي كاناضي', 0),
 (3, 'ahmad', 'bodal', 'ahmad@gmail.com', '', 3, '', 2, '', 'imgdefault.png', '$2y$10$NTfzkd2wkio.BgiQm1ZIDeVBBu9KDw/0m4sk9xf2dIUGsnZlXE4t2', '', 0),
 (8, 'Alexadro', 'Pato', 'alex@gmail.com', '54654534', 3, '12848', 1, 'oualfa', 'imgdefault.png', '$2y$10$WAAxLK44y4vA55EmmMCRA.sypHVLEAQenHVShJzKMAw7mK4NEHacK', '', 0),
 (15, 'anass', 'anass', 'anass@gmail.com', '06625252542654', 3, 'marrakech', 3, 'Daoudiyat', 'imgdefault.png', '$2y$10$rxC67hmgmEjhHki7PQ8/ZeGm3AYxhtqxBQiba6h8bwT5NQ7T3ksEq', '', 0),
@@ -389,6 +407,12 @@ ALTER TABLE `images`
   ADD KEY `fk_tech` (`fk_tech`);
 
 --
+-- Indexes for table `logo`
+--
+ALTER TABLE `logo`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `reviews`
 --
 ALTER TABLE `reviews`
@@ -456,6 +480,12 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `images`
   MODIFY `id_img` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `logo`
+--
+ALTER TABLE `logo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `reviews`
