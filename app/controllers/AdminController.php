@@ -154,4 +154,47 @@ class AdminController extends Controller
         redirect('pages/stripe');
         
     }
+    public function updateLogo($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            $this->view('pages/logo');
+        } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // die(var_dump($_FILES));
+            $fileName = $_FILES["img"]["name"];
+            $fileSize = $_FILES["img"]["size"];
+            $tmpName = $_FILES["img"]["tmp_name"];
+
+            $validImageExtension = ['jpg', 'jpeg', 'png', 'jfif','svg'];
+            $imageExtension = explode('.', $fileName);
+            $imageExtension = strtolower(end($imageExtension));
+            if (!in_array($imageExtension, $validImageExtension)) {
+                echo
+                "
+                  <script>
+                    alert('Invalid Image Extension');
+                  </script>
+                  ";
+                redirect('pages/logo?error=Invalid Image Extension');
+            } else if ($fileSize > 1000000000) {
+                echo
+                "
+                  <script>
+                    alert('Image Size Is Too Large');
+                  </script>
+                  ";
+                redirect('pages/logo?error=Image Size Is Too Large');
+            } else {
+                $newImageName = uniqid();
+                $newImageName .= '.' . $imageExtension;
+                $folder = $_SERVER['DOCUMENT_ROOT'] . '/project-khadamat/public/images/';
+                move_uploaded_file($tmpName, $folder . $newImageName);
+
+               
+                $this->AdminModel->updateLogo($id,$newImageName);
+                redirect('pages/logo');
+            }
+        }
+      
+    }
+    
 }

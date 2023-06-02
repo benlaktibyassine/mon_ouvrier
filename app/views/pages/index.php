@@ -9,6 +9,7 @@
   <div class="home position-relative">
   <div class="container d-flex flex-column-reverse justify-content-between align-items-center flex-md-row">
     <div class="img animate__animated animate__bounceInLeft animate__slow">
+   
       <img src="<?php echo URLROOT; ?>/public/images/pngegg (6).png" alt="img" width="370">
     </div>
     <div class="info animate__animated animate__bounceInRight animate__slow animate__delay-1s d-flex gap-3 flex-column justify-content-center align-items-center">
@@ -27,7 +28,6 @@
         </li>
         <li><a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in f h5 text-black"></i></a>
         </li>
-
       </ul>
     </div>
   </div>

@@ -32,7 +32,7 @@
         <div class="col">
           <div class="info">
             <center class="pb-2">
-              <img src="<?php echo URLROOT; ?>/public/images/logo.svg" alt="logo" width="50">
+              <img src="<?php echo URLROOT . '/public/images/' . $data[0]['logo'][0]->logo_src?>" alt="logo" width="50">
             </center>
             <h5 class="text-center">
               تطبيقنا يوفر العمال المتخصصين في مجالات متعددة مثل إصلاح الأبواب الكهربائية وتركيب الأثاث وأعمال الدهانات. نحن نوفر خدمات فورية وعالية الجودة، ويمكنك الاعتماد على خبرتنا ومهاراتنا الاحترافية في أداء أعمالك بكفاءة. انضم إلينا اليوم واستمتع بسهولة العثور على العمال المناسبين لاحتياجاتك </h5>

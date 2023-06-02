@@ -16,10 +16,14 @@ class PagesController extends Controller
     $AllCity = $this->technicienModel->getAllCity();
     $AllTech = $this->technicienModel->getAllTech();
     $topFedBack = $this->technicienModel->getTechTopFeedback();
+    $logo = $this->adminModel->getlogo();
 
 
     $data = [
-      ["title" => "home"],
+      [
+        "title" => "home",
+        "logo" => $logo,
+      ],
       $categories, $AllCity, $AllTech, $topFedBack
     ];
 
@@ -163,8 +167,14 @@ class PagesController extends Controller
   {
     $categories = $this->categorieModel->getCategories();
     $AllCity = $this->technicienModel->getAllCity();
+    $logo = $this->adminModel->getlogo();
+
     $data = [
-      ["title" => "Search"],
+      [
+        "title" => "Search",
+        "logo" => $logo,
+
+      ],
       $categories, $AllCity
     ];
     $this->view('pages/techSearch', $data);
@@ -214,12 +224,16 @@ class PagesController extends Controller
   }
   public function villes()
   {
-    $AllCity = $this->adminModel->villes();
-    $data = [
-      ["title" => "Villes"],
-      $AllCity
-    ];
-    $this->view('pages/villes', $data);
+    if (!$_SESSION['role'] == "admin") {
+      redirect('pages/loginAdmin');
+    } else {
+      $AllCity = $this->adminModel->villes();
+      $data = [
+        ["title" => "Villes"],
+        $AllCity
+      ];
+      $this->view('pages/villes', $data);
+    }
   }
   public function secteurs()
   {
@@ -234,12 +248,30 @@ class PagesController extends Controller
   }
   public function stripe()
   {
-    $infos = $this->technicienModel->getStripe();
-    $data = [
-      ["title" => "Stripe infos"],
-      $infos,
-    ];
+    if (!$_SESSION['role'] == "admin") {
+      redirect('pages/loginAdmin');
+    } else {
+      $infos = $this->technicienModel->getStripe();
+      $data = [
+        ["title" => "Stripe infos"],
+        $infos,
+      ];
 
-    $this->view('pages/stripe', $data);
+      $this->view('pages/stripe', $data);
+    }
+  }
+  public function logo()
+  {
+    if (!$_SESSION['role'] == "admin") {
+      redirect('pages/loginAdmin');
+    } else {
+      $logo = $this->adminModel->getlogo();
+      $data = [
+        ["title" => "Logo"],
+        $logo
+
+      ];
+      $this->view('pages/logo', $data);
+    }
   }
 }

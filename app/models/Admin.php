@@ -120,4 +120,17 @@ class Admin
 
         $this->db->execute();
     }
+    public function updateLogo($id, $logo_src)
+    {
+        $this->db->query("UPDATE `logo` SET logo_src=:logo WHERE id =$id");
+        $this->db->bind(':logo', $logo_src);
+        
+
+        $this->db->execute();
+    }
+    public function getlogo()
+    {
+        $this->db->query("SELECT * FROM logo");
+        return $this->db->resultSet();
+    }
 }

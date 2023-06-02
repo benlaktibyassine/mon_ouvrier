@@ -6,12 +6,12 @@
   <?php include_once APPROOT . '/views/inc/dashboard/sidebar.php'; ?>
 
   <!--Container Main start-->
-      <?php if (isset($_GET['error'])) {
+  <?php if (isset($_GET['error'])) {
 
-        echo "<div class='alert alert-danger' role='alert'>
-        <p class='text-center'>".$_GET['error']."</p>
+    echo "<div class='alert alert-danger' role='alert'>
+        <p class='text-center'>" . $_GET['error'] . "</p>
       </div>";
-      } ?>
+  } ?>
   <div class="container mt-2">
     <div class="d-flex justify-content-center">
 

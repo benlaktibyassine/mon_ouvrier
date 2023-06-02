@@ -23,9 +23,11 @@
         <a href="<?php echo URLROOT ?>/pages/stripe" class="nav_link <?php if ($_GET['url'] == "pages/stripe") {
                                                                           echo 'active';
                                                                         }; ?>"> <i class='bx bx-credit-card'></i><span class="nav_name">Stripe infos</span> </a>
+        <a href="<?php echo URLROOT ?>/pages/logo" class="nav_link <?php if ($_GET['url'] == "pages/logo") {
+                                                                          echo 'active';
+                                                                        }; ?>"> <i class='bx bxs-palette'></i><span class="nav_name">Logo</span> </a>
 
       </div>
-    </div> <a href="<?php echo URLROOT ?>/adminController/Logout" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Logout</span>
-    </a>
+    </div>
   </nav>
 </div>
