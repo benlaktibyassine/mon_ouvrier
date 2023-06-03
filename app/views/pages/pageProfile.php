@@ -136,27 +136,67 @@
                         </div>
                         <div class="col">
                             <div class="row">
-                                <ul>
-                                    <li class="h4 list-group-item">
-                                        <a href="mailto:<?php echo $data[1]->email  ?>"> <i class="fa-solid fa-envelope"></i></a> البريد الإلكتروني:
-                                        <?php echo $data[1]->email;  ?>
-                                    </li>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <a href="mailto:<?php echo $data[1]->email; ?>"><?php echo $data[1]->email; ?></a>
+                                            </td>
+                                            <td class="text-end">
+                                                البريد الإلكتروني:
+                                            </td>
+                                            <td>
+                                                <i class="fa-solid fa-envelope"></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <?php echo $data[1]->metier; ?>
+                                            </td>
+                                            <td class="text-end">
+                                                مهنة:
+                                            </td>
+                                            <td>
+                                                <i class="fa-solid fa-briefcase"></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="tel:<?php echo $data[1]->phone; ?>"><?php echo $data[1]->phone; ?></a>
+                                            </td>
+                                            <td class="text-end">
+                                                الهاتف:
+                                            </td>
+                                            <td>
+                                                <i class="fa-solid fa-phone"></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <?php echo $data[1]->ville; ?>
+                                            </td>
+                                            <td class="text-end">
+                                                مدينة:
+                                            </td>
+                                            <td>
+                                                <i class="fa-solid fa-location-dot"></i>
+                                            </td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
 
-                                    <li class="h4 list-group-item">
-                                        <i class="fa-solid fa-briefcase"></i> مهنة : <?php echo $data[1]->metier  ?> 
-                                    </li>
+                            </div>
+                            <div class="row">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class=" text-end">:الوصف</h5>
+                                        <p class="text-center">
+                                        <?php echo $data[1]->description; ?>
+                                        </p>
+                                    </div>
+                                </div>
 
-                                    <li class="h4 list-group-item">
-                                        <a href="tel:<?php echo $data[1]->phone  ?>"> <i class="fa-solid fa-phone"></i></a> الهاتف : <?php echo $data[1]->phone  ?>
-                                    </li>
-
-                                    <li class="h4 list-group-item">
-                                        <i class="fa-solid fa-location-dot"></i> مدينة : <?php echo $data[1]->ville  ?>
-                                    </li>
-                                    <li class="h4 list-group-item">
-                                        <i class="fa-solid fa-location-dot"></i> وصف : <?php echo $data[1]->description  ?>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -167,68 +207,70 @@
     <?php if (count($data[2]) != 0) { ?>
 
         <h3 class="text-center">أعمال</h3>
-    
-    <section class="d-flex  flex-wrap container">
+<div class="my-3">
 
+    <section class="d-flex flex-wrap container">
+        
         <?php
 
-        foreach ($data[2] as $imgsrc) {
-        ?>
-            <div class="col-4" style="height: 150px;">
-                <div class=" btn-cat img-hover wow animate__animated animate__bounceInLeft animate__slow  position-relative rounded col-12   mt-3 overflow-hidden" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <img class="img-fluid w-100 h-100" src="<?php echo URLROOT; ?>/public/images/<?php echo $imgsrc->img; ?>">
-                    <div class=" w-100 hover-section-img text-white px-3 py-1  d-flex flex-column justify-content-center align-items-center position-absolute end-0">
-                        <h4><?php echo $imgsrc->description ?></h4>
+foreach ($data[2] as $imgsrc) {
+    ?>
+                <div class="col-4 " style="height: 150px;">
+                    <div class=" btn-cat img-hover wow animate__animated animate__bounceInLeft animate__slow  position-relative rounded col-12   mt-3 overflow-hidden" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <img class="img-fluid w-100 h-100" src="<?php echo URLROOT; ?>/public/images/<?php echo $imgsrc->img; ?>">
+                        <div class=" w-100 hover-section-img text-white px-3 py-1  d-flex flex-column justify-content-center align-items-center position-absolute end-0">
+                            <h4><?php echo $imgsrc->description ?></h4>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php
-        }
-        ?>
-    </section>
+                <?php
+            }
+            ?>
+        </section>
+    </div>
     <?php  } ?>
     <?php if (count($data[3]) != 0) { ?>
 
 
-        <h3 class="text-center">مراجعات</h3>
-   
-    <section class="main">
-        <hr />
-        <div class="full-boxer">
-            <?php
-            foreach ($data[3] as $review) {
+        <h3 class="text-center mt-5">مراجعات</h3>
 
-            ?>
+        <section class="main mb-2">
+            <hr />
+            <div class="full-boxer">
+                <?php
+                foreach ($data[3] as $review) {
 
-                <div class="comment-box">
-                    <div class="box-top">
-                        <div class="Profile">
-                            <div class="profile-image">
-                                <img src="<?php echo URLROOT ?>/public/upload/<?php echo $review->img; ?>">
-                            </div>
-                            <div class="Name">
+                ?>
+
+                    <div class="comment-box">
+                        <div class="box-top">
+                            <div class="Profile">
+                                <div class="profile-image">
+                                    <img src="<?php echo URLROOT ?>/public/upload/<?php echo $review->img; ?>">
+                                </div>
+                                <div class="Name">
 
 
-                                <strong><?php echo $review->nom . " " . $review->prenom ?></strong>
-                                <?php if (isset($_SESSION['id']) &&  $_SESSION['id'] == $review->from_id) { ?> <span><a href="<?php echo URLROOT ?>/TechController/deleteReview?rev=<?php echo $review->id_review ?>&id_tech=<?php echo $data[1]->Id_tech ?>"><i class="fa fa-trash"></i></a></span><?php } ?>
+                                    <strong><?php echo $review->nom . " " . $review->prenom ?></strong>
+                                    <?php if (isset($_SESSION['id']) &&  $_SESSION['id'] == $review->from_id) { ?> <span><a href="<?php echo URLROOT ?>/TechController/deleteReview?rev=<?php echo $review->id_review ?>&id_tech=<?php echo $data[1]->Id_tech ?>"><i class="fa fa-trash"></i></a></span><?php } ?>
 
+                                </div>
                             </div>
                         </div>
+                        <div class="comment">
+                            <p>
+                                <?php echo $review->content ?>
+                            </p>
+                        </div>
                     </div>
-                    <div class="comment">
-                        <p>
-                            <?php echo $review->content ?>
-                        </p>
-                    </div>
-                </div>
-            <?php  }
-            ?>
+                <?php  }
+                ?>
 
-        </div>
-    </section>
+            </div>
+        </section>
     <?php  } ?>
 
-    <div class="container my-3">
+    <div class="container my-5">
         <form action="<?php echo URLROOT ?>/TechController/addReview/<?php echo $data[1]->Id_tech; ?>" method="post">
             <div class="row">
                 <div class="col">

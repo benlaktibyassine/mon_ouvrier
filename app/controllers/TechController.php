@@ -35,6 +35,8 @@ class TechController extends Controller
 
         $this->TechModel = $this->model('technicien');
         $this->CatModel = $this->model('Categorie');
+        $this->adminModel = $this->model('Admin');
+        
     }
 
     public function register()
@@ -94,14 +96,19 @@ class TechController extends Controller
                 // $idCat = $this->CatModel->getIdCatSelect($dataTech['job']);
                 $data["password"] = password_hash($data["password"], PASSWORD_DEFAULT);
                 $this->TechModel->Register($data, $cate, $imgSrc);
-
+                $logo = $this->adminModel->getlogo();
                 $data = $this->TechModel->getTech($data['nom']);
+                
+                $this->view('pages/login', [['title' => 'login',"logo" => $logo,]]);
+        
+                // redirect('pages/login');
 
-                $this->view('pages/login', [['title' => 'login']]);
             } else {
+                $logo = $this->adminModel->getlogo();
                 $cat = $this->CatModel->getCategories();
+                redirect('pages/register');
 
-                $this->view('pages/register', [['title' => 'register'], $cat, $dataTech]);
+                // $this->view('pages/register', [['title' => 'register',"logo" => $logo], $cat, $dataTech]);
             }
         } else {
             $data = [
@@ -116,6 +123,7 @@ class TechController extends Controller
                 'password_err' => '',
                 'Cpassword_err' => '',
             ];
+            
             redirect('pages/register');
         }
     }
@@ -124,22 +132,29 @@ class TechController extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $data = [];
+            $logo = $this->adminModel->getlogo();
+            $data[0]["logo"] = $logo;
             $data[0]['title'] = "Login";
             $this->view('pages/login', $data);
         } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $email = $_POST['email'];
             $password = $_POST['password'];
-
+            
             $dataTech = $this->TechModel->Login($email, $password);
             $data = [];
+            $logo = $this->adminModel->getlogo();
+            $data[0]["logo"] = $logo;
             $data[0]['title'] = "Login";
             $data[0]['error'] = "email or password not match";
 
             // die(var_dump($_POST));
             if (!$dataTech || !password_verify($password, $dataTech->password)) {
+                $logo = $this->adminModel->getlogo();
+
                 $data = [
                     'title' => 'Login',
-                    'error' => 'Email or password incorrect'
+                    'error' => 'Email or password incorrect',
+                    "logo" => $logo,
                 ];
                 $this->view('pages/login', $data);
             } else {
@@ -405,7 +420,7 @@ class TechController extends Controller
 
         $YOUR_DOMAIN = 'http://localhost/project-khadamat';
 
-        $priceId = $product_price_id; // had id dyal produit katcreeh f stripe
+        $priceId = $product_price_id; // had id dyal produit katswabo f stripe
 
         $checkout_session = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],

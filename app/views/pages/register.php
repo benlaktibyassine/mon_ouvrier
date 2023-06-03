@@ -30,7 +30,7 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user email" type="email" id="exampleFirstName" placeholder="email adresse" name="email">
+                                    <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user email" type="email" id="exampleFirstName" placeholder="البريد الإلكتروني" name="email">
                                         <div class="alert alert-danger form-control-user py-1 text-center d-none valid">  </div>
                                     </div>
                                     <div class="col-sm-6">

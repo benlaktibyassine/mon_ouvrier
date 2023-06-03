@@ -46,7 +46,17 @@
 
       </div>
     </div>
-    <h2>:الأعمال</h2>
+    <?php if (count($data[2]) != 0) { ?>
+      <h2 class="text-center mt-3">: الأعمال</h2>
+    <?php
+    } else {
+    ?>
+      <h2 class="text-center mt-3">: لا توجد أعمال مرتبطة معك </h2>
+    <?php
+
+    }
+    ?>
+
     <div class="conatiner">
       <div class="row">
         <?php

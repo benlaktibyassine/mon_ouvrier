@@ -152,7 +152,7 @@
             </div>
             <div class="mt-6 d-flex flex-column justify-content-between align-items-center">
               <h3 id="h3"><?php echo $tech->nom . ' ' . $tech->prenom ?></h3>
-              <p class="text-center"><?php echo $tech->description ?></p>
+              <!-- <p class="text-center"><?php echo $tech->description ?></p> -->
               <a class="btn btn-yellow" href="<?= URLROOT ?>/PagesController/pageProfile/<?= $tech->Id_tech ?>">consult</a>
               <div class="d-flex w-100 justify-content-between">
                 <h4><?php echo $tech->ville; ?></h4>

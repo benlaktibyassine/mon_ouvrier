@@ -84,7 +84,8 @@
           <div class="row">
             <div class="col">
               <div class="mb-3">
-                <label class="form-label" for="last_name"><strong>الوصف</strong></label><input class="form-control" type="text" id="last_name" placeholder="Description" name="description" value="<?php echo $data[1]->description; ?>" required>
+              <label class="form-label" for="last_name"><strong>الوصف</strong></label>
+<textarea class="form-control" id="last_name" placeholder="Description" name="description" required><?php echo $data[1]->description; ?></textarea>
 
               </div>
             </div>

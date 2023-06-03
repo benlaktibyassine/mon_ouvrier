@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2023 at 03:54 PM
+-- Generation Time: Jun 03, 2023 at 10:14 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -43,7 +43,12 @@ INSERT INTO `abonnement` (`id_abn`, `id_tech`, `date_abn`, `date_expiration`) VA
 (2, 3, '2023-05-10 17:14:11', '2023-04-14 17:14:11'),
 (3, 15, '2023-05-14 17:14:11', '2023-06-17 00:00:00'),
 (4, 16, '2023-05-15 16:47:35', '2023-06-15 00:00:00'),
-(5, 17, '2023-05-16 15:48:53', '2023-06-16 15:48:53');
+(5, 17, '2023-05-16 15:48:53', '2023-06-16 15:48:53'),
+(6, 18, '2023-06-03 20:36:08', '2023-06-03 20:36:08'),
+(7, 19, '2023-06-03 20:39:28', '2023-06-03 20:39:28'),
+(8, 20, '2023-06-03 20:53:09', '2023-06-03 21:08:09'),
+(11, 23, '2023-06-03 21:04:47', '2023-07-03 21:04:47'),
+(12, 24, '2023-06-03 21:05:41', '2023-07-03 21:05:41');
 
 -- --------------------------------------------------------
 
@@ -332,12 +337,17 @@ CREATE TABLE `techniciens` (
 --
 
 INSERT INTO `techniciens` (`Id_tech`, `nom`, `prenom`, `email`, `phone`, `Fk_cat`, `adresse`, `id_ville`, `secteur`, `img`, `password`, `description`, `feedback`) VALUES
-(2, 'yassine', 'benlaktib', 'benlaktib@gmail.com', '0624863735', 6, 'mhamid', 3, 'Gueliz', '64285f32d9b6f.jpeg', '$2y$10$rxC67hmgmEjhHki7PQ8/ZeGm3AYxhtqxBQiba6h8bwT5NQ7T3ksEq', 'تريسيان ناضي كاناضي', 0),
-(3, 'ahmad', 'bodal', 'ahmad@gmail.com', '', 3, '', 2, '', 'imgdefault.png', '$2y$10$NTfzkd2wkio.BgiQm1ZIDeVBBu9KDw/0m4sk9xf2dIUGsnZlXE4t2', '', 0),
-(8, 'Alexadro', 'Pato', 'alex@gmail.com', '54654534', 3, '12848', 1, 'oualfa', 'imgdefault.png', '$2y$10$WAAxLK44y4vA55EmmMCRA.sypHVLEAQenHVShJzKMAw7mK4NEHacK', '', 0),
-(15, 'anass', 'anass', 'anass@gmail.com', '06625252542654', 3, 'marrakech', 3, 'Daoudiyat', 'imgdefault.png', '$2y$10$rxC67hmgmEjhHki7PQ8/ZeGm3AYxhtqxBQiba6h8bwT5NQ7T3ksEq', '', 0),
-(16, 'hamid', 'test', 'hamid@test.com', '0661283850', 3, 'gueliz', 3, 'Gueliz', 'imgdefault.png', '$2y$10$drRXm7LY5nz0.tO7.kdlEO.W80V.hByCO84N6d05QSe8K7jmtIJoW', '', 0),
-(17, 'yassine', 'bbbbb', 'test77@gmail.com', '', 3, '', 1, 'oualfa', 'imgdefault.png', '$2y$10$x6LHN7qLPwGPabqF7/LWC.xl3.SahriG7Exagp0cOy01F07RIvH.y', '', 0);
+(2, 'yassine', 'benlaktib', 'benlaktib@gmail.com', '0624863735', 6, 'mhamid', 3, 'Gueliz', '64285f32d9b6f.jpeg', '$2y$10$rxC67hmgmEjhHki7PQ8/ZeGm3AYxhtqxBQiba6h8bwT5NQ7T3ksEq', 'description khfifa drifa 7alawa\r\n', 0),
+(3, 'ahmad', 'bodal', 'ahmad@gmail.com', '', 3, '', 2, '', 'imgdefault.png', '$2y$10$NTfzkd2wkio.BgiQm1ZIDeVBBu9KDw/0m4sk9xf2dIUGsnZlXE4t2', 'default', 0),
+(8, 'Alexadro', 'Pato', 'alex@gmail.com', '54654534', 3, '12848', 1, 'oualfa', 'imgdefault.png', '$2y$10$WAAxLK44y4vA55EmmMCRA.sypHVLEAQenHVShJzKMAw7mK4NEHacK', 'default', 0),
+(15, 'anass', 'anass', 'anass@gmail.com', '06625252542654', 3, 'marrakech', 3, 'Daoudiyat', 'imgdefault.png', '$2y$10$rxC67hmgmEjhHki7PQ8/ZeGm3AYxhtqxBQiba6h8bwT5NQ7T3ksEq', 'default', 0),
+(16, 'hamid', 'test', 'hamid@test.com', '0661283850', 3, 'gueliz', 3, 'Gueliz', 'imgdefault.png', '$2y$10$drRXm7LY5nz0.tO7.kdlEO.W80V.hByCO84N6d05QSe8K7jmtIJoW', 'default', 0),
+(17, 'yassine', 'bbbbb', 'test77@gmail.com', '', 3, '', 1, 'oualfa', 'imgdefault.png', '$2y$10$x6LHN7qLPwGPabqF7/LWC.xl3.SahriG7Exagp0cOy01F07RIvH.y', '', 0),
+(18, 'anoir', 'elabsi', 'elabsi@gmail.com', '', 3, '', 3, 'Gueliz', 'imgdefault.png', '$2y$10$0dEzW6.l3R05CCzKOKI4mOpIevKxaxRtJ/uDk4bnJajfC4RsLtraq', 'خبير عمل مستقل جاهز للتحديات. اخترني لمشروعك القادم', 0),
+(19, 'hassan', 'wa 7assan', 'hassan@gmail.com', '06123456789', 5, 'maroc', 3, 'Gueliz', 'imgdefault.png', '$2y$10$tw6nt9yMUNdoNb58qDIHyOKr.GX85X1.ciN.xGGFoA/tGSXYEGPJa', 'خبير عمل مستقل جاهز للتحديات. اخترني لمشروعك القادم o nadi', 0),
+(20, 'ronalldo', 'nazario', 'ronaldo@gmail.com', '', 3, '', 4, 'Ahlen', 'imgdefault.png', '$2y$10$QkTSOT8KNXvE6S61Kdnjr.UC.LGAM2pJC0YSoRU5ixahiT7at3Azi', 'خبير عمل مستقل جاهز للتحديات. اخترني لمشروعك القادم', 0),
+(23, 'hfuhefuhezufh', 'iuhfuhzfd', 'azertyuio@gmail.com', '', 3, '', 2, 'Hay Riyad', 'imgdefault.png', '$2y$10$PeBSZZJ/VhyqEhOL17mdDeufk6AUYc5k./rn/WhEtIe8kl5O9y00W', 'خبير عمل مستقل جاهز للتحديات. اخترني لمشروعك القادم', 0),
+(24, 'isagi', 'yochi', 'isagi@gmail.com', '', 3, '', 1, 'oualfa', 'imgdefault.png', '$2y$10$C0tiH5i6SmXBdDD7L1fO6.e1Xy29Um27tmdevMJ.f0kbMeDVHefiG', 'خبير عمل مستقل جاهز للتحديات. اخترني لمشروعك القادم', 0);
 
 -- --------------------------------------------------------
 
@@ -385,7 +395,7 @@ INSERT INTO `villes` (`id_ville`, `nom_ville`) VALUES
 --
 ALTER TABLE `abonnement`
   ADD PRIMARY KEY (`id_abn`),
-  ADD KEY `id_tech` (`id_tech`);
+  ADD KEY `abonnement_ibfk_1` (`id_tech`);
 
 --
 -- Indexes for table `admins`
@@ -418,14 +428,14 @@ ALTER TABLE `logo`
 ALTER TABLE `reviews`
   ADD PRIMARY KEY (`id_review`),
   ADD KEY `from_id` (`from_id`),
-  ADD KEY `to_id` (`to_id`);
+  ADD KEY `reviews_ibfk_2` (`to_id`);
 
 --
 -- Indexes for table `secteurs`
 --
 ALTER TABLE `secteurs`
   ADD PRIMARY KEY (`id_secteur`),
-  ADD KEY `id_ville` (`id_ville`);
+  ADD KEY `secteurs_ibfk_1` (`id_ville`);
 
 --
 -- Indexes for table `stripe`
@@ -444,8 +454,8 @@ ALTER TABLE `subs`
 --
 ALTER TABLE `techniciens`
   ADD PRIMARY KEY (`Id_tech`),
-  ADD KEY `Fk_cat` (`Fk_cat`),
-  ADD KEY `id_ville` (`id_ville`);
+  ADD KEY `techniciens_ibfk_1` (`Fk_cat`),
+  ADD KEY `techniciens_ibfk_2` (`id_ville`);
 
 --
 -- Indexes for table `villes`
@@ -461,7 +471,7 @@ ALTER TABLE `villes`
 -- AUTO_INCREMENT for table `abonnement`
 --
 ALTER TABLE `abonnement`
-  MODIFY `id_abn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_abn` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `admins`
@@ -491,7 +501,7 @@ ALTER TABLE `logo`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id_review` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_review` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `secteurs`
@@ -515,7 +525,7 @@ ALTER TABLE `subs`
 -- AUTO_INCREMENT for table `techniciens`
 --
 ALTER TABLE `techniciens`
-  MODIFY `Id_tech` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `Id_tech` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `villes`
@@ -531,32 +541,32 @@ ALTER TABLE `villes`
 -- Constraints for table `abonnement`
 --
 ALTER TABLE `abonnement`
-  ADD CONSTRAINT `abonnement_ibfk_1` FOREIGN KEY (`id_tech`) REFERENCES `techniciens` (`Id_tech`);
+  ADD CONSTRAINT `abonnement_ibfk_1` FOREIGN KEY (`id_tech`) REFERENCES `techniciens` (`Id_tech`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `images`
 --
 ALTER TABLE `images`
-  ADD CONSTRAINT `images_ibfk_1` FOREIGN KEY (`fk_tech`) REFERENCES `techniciens` (`Id_tech`);
+  ADD CONSTRAINT `images_ibfk_1` FOREIGN KEY (`fk_tech`) REFERENCES `techniciens` (`Id_tech`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `reviews`
 --
 ALTER TABLE `reviews`
-  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`to_id`) REFERENCES `techniciens` (`Id_tech`);
+  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`to_id`) REFERENCES `techniciens` (`Id_tech`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `secteurs`
 --
 ALTER TABLE `secteurs`
-  ADD CONSTRAINT `secteurs_ibfk_1` FOREIGN KEY (`id_ville`) REFERENCES `villes` (`id_ville`);
+  ADD CONSTRAINT `secteurs_ibfk_1` FOREIGN KEY (`id_ville`) REFERENCES `villes` (`id_ville`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `techniciens`
 --
 ALTER TABLE `techniciens`
-  ADD CONSTRAINT `techniciens_ibfk_1` FOREIGN KEY (`Fk_cat`) REFERENCES `categories` (`id_cat`),
-  ADD CONSTRAINT `techniciens_ibfk_2` FOREIGN KEY (`id_ville`) REFERENCES `villes` (`id_ville`);
+  ADD CONSTRAINT `techniciens_ibfk_1` FOREIGN KEY (`Fk_cat`) REFERENCES `categories` (`id_cat`) ON DELETE CASCADE,
+  ADD CONSTRAINT `techniciens_ibfk_2` FOREIGN KEY (`id_ville`) REFERENCES `villes` (`id_ville`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
