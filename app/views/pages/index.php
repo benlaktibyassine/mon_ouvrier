@@ -135,7 +135,7 @@
 
     <div class=" container">
       <div>
-        <h5>أعلى ردود الفعل</h5>
+        <h5 class="text-end">أعلى ردود الفعل</h5>
       </div>
 
       <div class="cards-profile text-dark  d-flex flex-column flex-lg-row gap-4 justify-content-center align-items-center">
@@ -153,7 +153,7 @@
             <div class="mt-6 d-flex flex-column justify-content-between align-items-center">
               <h3 id="h3"><?php echo $tech->nom . ' ' . $tech->prenom ?></h3>
               <!-- <p class="text-center"><?php echo $tech->description ?></p> -->
-              <a class="btn btn-yellow" href="<?= URLROOT ?>/PagesController/pageProfile/<?= $tech->Id_tech ?>">consult</a>
+              <a class="btn btn-yellow" href="<?= URLROOT ?>/PagesController/pageProfile/<?= $tech->Id_tech ?>">الصفحة الشخصية</a>
               <div class="d-flex w-100 justify-content-between">
                 <h4><?php echo $tech->ville; ?></h4>
                 <span>
