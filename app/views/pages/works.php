@@ -37,7 +37,7 @@
       <div>
         <form action="<?php echo URLROOT ?>/TechController/insertMultiplImg/<?php echo $data[1]->Id_tech; ?>" method="POST" enctype="multipart/form-data">
 <input type="text" name="description" class="form-control form-control-user nom" required  placeholder="وصف العمل"/>
-          <input type="file" name="image" multiple required class="btn btn-danger">
+          <input type="file" name="image" multiple required class="btn btn-primary">
           <button class="btn btn-primary" type="submit" name="submit">إضافة صور</button>
         </form>
       </div>
