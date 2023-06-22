@@ -32,12 +32,12 @@
     }
     ?>
     <div class="d-flex justify-content-between">
-      <p class="font-weight-bold h5">صور الأعمال</p>
+      <!-- <p class="font-weight-bold h5">صور الأعمال</p> -->
 
       <div>
         <form action="<?php echo URLROOT ?>/TechController/insertMultiplImg/<?php echo $data[1]->Id_tech; ?>" method="POST" enctype="multipart/form-data">
-          <label for="">وصف العمل<input type="text" name="description" class="form-control form-control-user nom" required /> </label>
-          <input type="file" name="image" multiple required>
+<input type="text" name="description" class="form-control form-control-user nom" required  placeholder="وصف العمل"/>
+          <input type="file" name="image" multiple required class="btn btn-danger">
           <button class="btn btn-primary" type="submit" name="submit">إضافة صور</button>
         </form>
       </div>
