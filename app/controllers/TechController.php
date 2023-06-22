@@ -36,7 +36,6 @@ class TechController extends Controller
         $this->TechModel = $this->model('technicien');
         $this->CatModel = $this->model('Categorie');
         $this->adminModel = $this->model('Admin');
-        
     }
 
     public function register()
@@ -98,9 +97,9 @@ class TechController extends Controller
                 $this->TechModel->Register($data, $cate, $imgSrc);
                 $logo = $this->adminModel->getlogo();
                 $data = $this->TechModel->getTech($data['nom']);
-                
-                $this->view('pages/login', [['title' => 'login',"logo" => $logo,]]);
-        
+
+                $this->view('pages/login', [['title' => 'login', "logo" => $logo,]]);
+
                 // redirect('pages/login');
 
             } else {
@@ -123,7 +122,7 @@ class TechController extends Controller
                 'password_err' => '',
                 'Cpassword_err' => '',
             ];
-            
+
             redirect('pages/register');
         }
     }
@@ -139,7 +138,7 @@ class TechController extends Controller
         } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $email = $_POST['email'];
             $password = $_POST['password'];
-            
+
             $dataTech = $this->TechModel->Login($email, $password);
             $data = [];
             $logo = $this->adminModel->getlogo();
@@ -216,8 +215,13 @@ class TechController extends Controller
             // die(var_dump( $techSearch));
             $categories = $this->CatModel->getCategories();
             $AllCity = $this->TechModel->getAllCity();
+            $logo = $this->adminModel->getlogo();
+
             $data = [
-                ['title' => "Result page"],
+                [
+                    'title' => "Result page",
+                    "logo" => $logo
+                ],
                 $categories,
                 $AllCity,
                 $techSearch
@@ -234,8 +238,13 @@ class TechController extends Controller
             $techSearch = $this->TechModel->chercher($city, $job);
             $categories = $this->CatModel->getCategories();
             $AllCity = $this->TechModel->getAllCity();
+            $logo = $this->adminModel->getlogo();
+
             $data = [
-                ['title' => "Result page"],
+                [
+                    'title' => "Result page",
+                    "logo" => $logo
+                ],
                 $categories,
                 $AllCity,
                 $techSearch
@@ -413,7 +422,7 @@ class TechController extends Controller
         $secret = $stripe_data[0]->secret;
         $product_price_id = $stripe_data[0]->price_id;
 
-        
+
         $stripeSecretKey = $secret;
         \Stripe\Stripe::setApiKey($stripeSecretKey);
         header('Content-Type: application/json');
