@@ -232,9 +232,9 @@ foreach ($data[2] as $imgsrc) {
     <?php if (count($data[3]) != 0) { ?>
 
 
-        <h3 class="text-center mt-5">مراجعات</h3>
-
+        
         <section class="main mb-2">
+            <h3 class="text-center mt-5">مراجعات</h3>
             <hr />
             <div class="full-boxer">
                 <?php
