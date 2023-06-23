@@ -15,8 +15,11 @@
                                         } else {
                                           echo URLROOT . '/public/upload/' . $data[1]->img;
                                         } ?>" alt=""> </div>
-    <a href="<?php echo URLROOT ?>/adminController/Logout" class="nav_link" style="display: contents;"> <i class='bx bx-log-out nav_icon'></i>
-    </a>
+                                        <?php if ($_SESSION['role']=='admin') {
+                                         ?> <a href="<?php echo URLROOT ?>/adminController/Logout" class="nav_link" style="display: contents;"> <i class='bx bx-log-out nav_icon'></i>
+                                         </a><?php 
+                                        }?>
+   
   </div>
 
 </header>
